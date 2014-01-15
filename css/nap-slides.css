@@ -1,0 +1,145 @@
+/* Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote,
+a, abbr, acronym, address, big, cite,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+
+/* Fallback message for clients that don't support impress */
+
+.fallback-message {
+    font-family: sans-serif;
+    line-height: 1.3;
+
+    width: 780px;
+    padding: 10px 10px 0;
+    margin: 20px auto;
+
+    border: 1px solid #E4C652;
+    border-radius: 10px;
+    background: #EEDC94;
+}
+
+.fallback-message p {
+    margin-bottom: 10px;
+}
+
+.impress-supported .fallback-message {
+    display: none;
+}
+
+/* Everything below is the NAP theming */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Gill Sans';
+    text-align: center;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Gill Sans';
+    font-weight: 200;
+}
+
+h1 {
+    font-size: 80px;
+    margin-top: 125px;
+    margin-bottom: 175px;
+}
+
+em {
+    font-style: italic;
+}
+
+h2 {
+    font-family: 'Georgia';
+    text-transform: uppercase;
+    font-size: 50px;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #000;
+}
+
+h2.group-logo {
+    border-bottom: 0;
+}
+
+h2.group-logo .the {
+    font-size: 30px;
+    border-bottom: 1px solid #000
+}
+
+h3 {
+    font-size: 30px;
+}
+
+.step {
+    position: relative;
+
+    width: 900px;
+    min-height: 700px;
+    padding: 10px;
+    margin: 0px auto;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    -ms-box-sizing:     border-box;
+    -o-box-sizing:      border-box;
+    box-sizing:         border-box;
+
+    font-size: 36px;
+}
+
+section.step {
+    min-height: 0px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.step p,ul,pre {
+    margin: 10px 30px;
+    line-height: 60px;
+}
+
+div.step:after {
+    content: 'THE NET-A-PORTER GROUP';
+    font-family: 'Georgia';
+    font-size: 25px;
+    display: block;
+
+    padding-top: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #000;
+
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.notes {
+    display: none;
+}

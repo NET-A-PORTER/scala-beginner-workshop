@@ -1,0 +1,171 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>NET-A-PORTER impress.js template</title>
+    
+    <meta name="description" content="Let's learn about all those confusing terms used by the Scala and function programming community" />
+    <meta name="author" content="Ian Forsey" />
+
+    <link href="css/nap-slides.css" rel="stylesheet" />
+    <link href="css/idea.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body class="impress-not-supported">
+
+<!--
+    Fallback message for clients that do not support impress.js
+-->
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress">
+    
+    <!--
+        Slides start here!
+    -->
+    <section class="step" data-x="-1500">
+        <h2 class="group-logo">
+            <span class="the">THE</span><br/>NET-A-PORTER<br/>GROUP
+        </h2>
+        <h1><em>impress.js</em> Template</h1>
+        <h3>Use the left and right arrow keys!</h3>
+    </section>
+
+    <div class="step" data-x="0">
+        <h2>Why impress.js over PPT?</h2>
+        <ul>
+            <li>Stick it in git == Easier to collaborate</li>
+            <li>Stick it on webserver == Easy to share afterwards</li>
+            <li>Automagic code syntax highlighting</li>
+            <li>It doesn't make you want to punch yourself in the face</li>
+        </ul>
+        <br />
+        <br />
+        <p>Okay then, how do I use it?</p>
+    </div>
+
+    <div class="step" data-x="1500">
+        <h2>Regular Slide</h2>
+        <ul>
+            <li>Make regular slides with a div</li>
+            <ul>
+                <li>Give it the class step</li>
+                <li>Use data-x and data-y attributes for its position</li>
+            </ul>
+            <li>Inside...</li>
+            <ul>
+                <li>h2 for your title...</li>
+                <li>Any HTML for your slide content</li>
+            </ul>
+        </ul>
+    </div>
+
+    <section class="step" data-x="3000">
+        Use section tags for title slides
+    </section>
+
+    <div class="step" data-x="4500">
+        <h2>Code Snippets</h2>
+        <p>Syntax highlighting for code is done automatically</p>
+        <p>Simply use a pre code block</p>
+        <pre><code class="scala">
+def helloWorld = {
+    println("Hello World!")    
+}
+        </code></pre>
+    </div>
+
+    <section class="step" data-x="6000">
+        Large code snippets are no longer constrained by slide size...
+    </section>
+
+    <!-- 
+        You can make dummy slides with no content to simply pan the camera
+    -->
+    <section class="step" data-x="7500" data-y="-800">
+    </section>
+
+    <div class="step" data-x="7500">
+        <h2>Code example</h2>
+        <pre><code class="scala">
+trait PerRequest extends Actor {
+
+  def r: RequestContext
+  def target: ActorRef
+  def message: RestMessage
+
+  setReceiveTimeout(2.seconds)
+  target ! message
+
+  def receive = {
+    case res: RestMessage ⇒ 
+      complete(200, res)
+
+    case v: Validation ⇒ 
+      complete(400, v)
+
+    case ReceiveTimeout ⇒ 
+      complete(504, Error("Request Timeout"))
+  }
+
+  def complete[T](status: StatusCode, obj: T) = {
+    r.complete(status, obj)
+    stop(self)
+  }
+
+  override val supervisorStrategy =
+    OneForOneStrategy() {
+      case e ⇒ {
+        complete(500, Error(e.getMessage))
+        Stop
+      }
+    }
+}
+        </code></pre>
+    </div>
+
+    <section class="step" data-x="7500" data-y="800">
+    </section>
+
+    <div class="step" data-x="9000" data-y="800">
+        <h2>Speaker notes</h2>
+        <p>Press the 'p' key for speaker notes</p>
+        <p>Write notes in a div with the 'notes' class</p>
+        <div class="notes">
+            Hello! This is some notes for this slide
+        </div>
+    </div>
+
+    <div class="step" data-x="10500" data-y="800">
+        <h2>That's it!</h2>
+        <br />
+        <br />
+        <br />
+        <br />
+        <p style="text-align:center">
+            <a href="http://stash.vm.wtf.nap:7990/users/i.forsey/repos/nap-impress-template/browse">
+                Fork the source to make your own slide decks!
+            </a>
+        </p>
+    </div>
+
+</div>
+
+    <script src="js/impress.js"></script>
+    <script src="js/impress-console.js"></script>
+    <script>
+        impress().init()
+        impressConsole().init(css="css/impress-console.css")
+    </script>
+
+</body>
+</html>
