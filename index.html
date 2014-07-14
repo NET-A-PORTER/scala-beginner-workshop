@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>NET-A-PORTER impress.js template</title>
+    <title>NET-A-PORTER Scala Beginner Workshop</title>
     
     <meta name="description" content="Let's learn about all those confusing terms used by the Scala and function programming community" />
     <meta name="author" content="Ian Forsey" />
@@ -36,127 +36,845 @@
         <h2 class="group-logo">
             <span class="the">THE</span><br/>NET-A-PORTER<br/>GROUP
         </h2>
-        <h1><em>impress.js</em> Template</h1>
-        <h3>Use the left and right arrow keys!</h3>
+        <h1><em>Scala</em> Beginner Workshop</h1>
+        <h3>http://github.io/net-a-porter/scala-beginner-workshop</h3>
     </section>
 
     <div class="step" data-x="0">
-        <h2>Why impress.js over PPT?</h2>
+        <h2>What is Scala?</h2>
         <ul>
-            <li>Stick it in git == Easier to collaborate</li>
-            <li>Stick it on webserver == Easy to share afterwards</li>
-            <li>Automagic code syntax highlighting</li>
-            <li>It doesn't make you want to punch yourself in the face</li>
+            <li>OO and Functional</li>
+            <ul>
+                <li>Everything is an object</li>
+                <li>Support closures</li>
+            </ul>
+            <li>Runs on the JVM</li>
+            <ul>
+                <li>Can call Java Libraries</li>
+            </ul>
+            <li>Statically typed</li>
         </ul>
-        <br />
-        <br />
-        <p>Okay then, how do I use it?</p>
     </div>
 
     <div class="step" data-x="1500">
-        <h2>Regular Slide</h2>
+        <h2>Why Scala?</h2>
         <ul>
-            <li>Make regular slides with a div</li>
+            <li>Scalable</li>
+            <li>Concise and expressive</li>
+            <li>Enjoyable to work with!</li>
+        </ul>
+    </div>
+
+    <div class="step" data-x="3000">
+        <h2>Agenda</h2>
+        <ul>
+            <li>vals and vars</li>
+            <li>methods</li>
+            <li>classes and case classes</li>
+            <li>functions</li>
+            <li>collections and options</li>
+            <li>traits</li>
+            <li>objects</li>
+            <li>implicits</li>
+        </ul>
+    </div>
+
+    <section class="step" data-x="4500">
+        vals and vars
+    </section>
+
+    <div class="step" data-x="6000">
+        <h2>vals and vars</h2>
+        <ul>
+            <li><span class="keyword">val</span> (value)</li>
             <ul>
-                <li>Give it the class step</li>
-                <li>Use data-x and data-y attributes for its position</li>
+                <li>Once assigned cannot be reassigned</li>
             </ul>
-            <li>Inside...</li>
+            <li><span class="keyword">var</span> (variable)</li>
             <ul>
-                <li>h2 for your title...</li>
-                <li>Any HTML for your slide content</li>
+                <li>Can be reassigned</li>
+            </ul>
+            <li>Immutability first</li>
+            <ul>
+                <li>Use val by default</li>
+                <li>Only use var when necessary</li>
             </ul>
         </ul>
     </div>
 
-    <section class="step" data-x="3000">
-        Use section tags for title slides
-    </section>
+    <div class="step" data-x="7500">
+        <h2>Examples</h2>
+        <pre><code class="scala">val pid = 12345
 
-    <div class="step" data-x="4500">
-        <h2>Code Snippets</h2>
-        <p>Syntax highlighting for code is done automatically</p>
-        <p>Simply use a pre code block</p>
-        <pre><code class="scala">
-def helloWorld = {
-    println("Hello World!")    
-}
+val designer = "Prada"
+
+val onSale = true
+
+val pidAndSku = (12345, "12345-67")
+
+var markdown = 0.5
+markdown = 0.7
         </code></pre>
     </div>
 
-    <section class="step" data-x="6000">
-        Large code snippets are no longer constrained by slide size...
+    <section class="step" data-x="9000">
+        <img src="images/valyuno.jpg" style="height:700px;" />
     </section>
 
-    <!-- 
-        You can make dummy slides with no content to simply pan the camera
-    -->
-    <section class="step" data-x="7500">
-    </section>
+    <div class="step" data-x="10500">
+        <h2>Examples</h2>
+        <pre><code class="scala">val pid<span class="codehl">: Int</span> = 12345
 
-    <div class="step" data-x="7500" data-y="800">
-        <h2>Code example</h2>
-        <pre><code class="scala">
-trait PerRequest extends Actor {
+val designer<span class="codehl">: String</span> = "Prada"
 
-  def r: RequestContext
-  def target: ActorRef
-  def message: RestMessage
+val onSale<span class="codehl">: Boolean</span> = true
 
-  setReceiveTimeout(2.seconds)
-  target ! message
+val pidAndSku<span class="codehl">: (Int, String)</span> = 
+  (12345, "12345-67")
 
-  def receive = {
-    case res: RestMessage ⇒ 
-      complete(200, res)
-
-    case v: Validation ⇒ 
-      complete(400, v)
-
-    case ReceiveTimeout ⇒ 
-      complete(504, Error("Request Timeout"))
-  }
-
-  def complete[T](status: StatusCode, obj: T) = {
-    r.complete(status, obj)
-    stop(self)
-  }
-
-  override val supervisorStrategy =
-    OneForOneStrategy() {
-      case e ⇒ {
-        complete(500, Error(e.getMessage))
-        Stop
-      }
-    }
-}
+var markdown<span class="codehl">: Double</span> = 0.5
         </code></pre>
     </div>
 
-    <section class="step" data-x="7500" data-y="1600">
+    <section class="step" data-x="12000">
+        methods
     </section>
 
-    <div class="step" data-x="9000" data-y="1600">
-        <h2>Speaker notes</h2>
-        <p>Press the 'p' key for speaker notes</p>
-        <p>Write notes in a div with the 'notes' class</p>
-        <div class="notes">
-            Hello! This is some notes for this slide
+    <div class="step" data-x="13500">
+        <h2>def (method)</h2>
+        <pre><code class="scala">def markdown(pennies: Int, 
+             percent: Double) = 
+  (pennies * percent).toInt
+
+> val r = markdown(80, 0.5)
+r: Int = 40
+        </code></pre>
+    </div>
+
+    <div class="step" data-x="15000">
+        <h2>def (method)</h2>
+        <pre><code class="scala">def markdown(pennies: Int, 
+             percent: Double)<span class="codehl">: Int</span> = 
+  (pennies * percent).toInt
+
+> val r = markdown(80, 0.5)
+r: Int = 40
+        </code></pre>
+    </div>
+
+    <div class="step" data-x="16500">
+        <h2>def (method)</h2>
+        <pre><code class="scala">def markdown(pennies: Int, 
+             percent: Double) = <span class="codehl">{</span>
+  (pennies * percent).toInt
+<span class="codehl">}</span>
+
+> val r = markdown(80, 0.5)
+r: Int = 40
+        </code></pre>
+    </div>
+
+    <div class="step" data-x="18000">
+        <h2>Task</h2>
+        <ul>
+            <li>Write a method called slug</li>
+            <ul>
+                <li>it takes an Int argument called stock</li>
+                <li>returns <span class="string">"SOLD_OUT"</span> when stock is <span class="number">0</span></li>
+                <li>otherwise returns <span class="string">"IN_STOCK"</span></li>
+            </ul>
+            <li>
+                If statement Syntax:
+                <pre><code class="scala">if ( <em>expr</em> ) <em>a</em> else <em>b</em></code></pre>
+            </li>
+            <li>
+                Equality check with ==
+            </li>
+        </ul>
+    </div>
+
+    <div class="step" data-x="19500">
+        <h2>def (method)</h2>
+        <pre><code class="scala">def slug(stock: Int) =
+  if(stock == 0) "SOLD_OUT"
+  else "IN_STOCK"
+
+> val s = slug(0)
+s: String = SOLD_OUT
+        </code></pre>
+    </div>
+
+    <div class="step" data-x="21000">
+        <h2>Default Parameters</h2>
+        <pre><code class="scala">def markdown(pennies: Int, 
+             percent: Double<span class="codehl"> = 0.5</span>) = 
+  (pennies * percent).toInt
+
+> val r = markdown(80)
+r: Int = 40
+
+> val r = markdown(80, 0.25)
+r: Int = 20
+        </code></pre>
+    </div>
+
+    <div class="step" data-x="22500">
+        <h2>By Name Parameters</h2>
+        <pre><code class="scala">def markdown(pennies: Int = 80, 
+             percent: Double = 0.5) = 
+  (pennies * percent).toInt
+
+
+> val r = markdown(<span class="codehl">percent =</span> 0.25)
+r: Int = 20
+        </code></pre>
+    </div>
+
+    <section class="step" data-x="24000">
+        classes
+    </section>
+
+    <div class="step" data-x="25500">
+        <h2>Classes</h2>
+        <pre><code class="scala">
+
+class Product(stock: Int)
+
+val p = new Product(100)
+        </code></pre>
+    </div>
+
+    <div class="step" data-x="27000">
+        <h2>Classes</h2>
+        <pre><code class="scala">
+
+class Product(val stock: Int)
+
+val p = new Product(100)
+p.stock
+        </code></pre>
+    </div>
+
+    <div class="step" data-x="28500">
+        <h2>Classes</h2>
+        <pre><code class="scala">
+class Product(val stock: Int) {
+    val lowStock = stock &lt; 3
+}
+
+val p = new Product(100)
+p.lowStock
+        </code></pre>
+    </div>
+
+    <div class="step" data-x="30000">
+        <h2>Classes</h2>
+        <pre><code class="scala">
+class Product(val stock: Int) {
+    def lowStock = stock &lt; 3
+}
+
+val p = new Product(100)
+p.lowStock
+        </code></pre>
+    </div>
+
+    <div class="step" data-x="31500">
+        <h2>Case Classes</h2>
+        <pre><code class="scala">case class Product(stock: Int)
+Product(100)</code></pre>
+    <ul class="nobullet">
+        <li>+ All fields made vals (public)</li>
+        <li>+ Factory method (no new keyword)</li>
+        <li>+ equals and hashcode</li>
+        <li>+ Pretty toString</li>
+        <li>– Case-to-case class inheritance is <a href="http://stackoverflow.com/questions/11158929/what-is-so-wrong-with-case-class-inheritance">prohibited</a></li>
+        <li>+ And ...</li>
+    </ul>
+    </div>
+
+    <div class="step" data-x="33000">
+        <h2>Case Class - Copy</h2>
+        <pre><code class="scala">val p = Product(100)
+
+val p2 = p.copy(stock = 99)
+
+p2.stock == 99</code></pre>
+    </div>
+
+    <div class="step" data-x="34500">
+        <h2>Case Class - Pattern Match</h2>
+        <pre><code class="scala">val p = Product(100)
+
+val slug = p match {
+  case Product(0) =>           "SOLD_OUT"
+  case Product(1 | 2) =>       "LOW_STOCK"
+  case Product(x) if(x &lt; 0) => "WTF"
+  case _ =>                    "IN_STOCK"
+}</code></pre>
+    </div>
+
+    <div class="step" data-x="36000">
+        <h2>Task</h2>
+        <ul>
+            <li>Write a <span class="keywork">case class</span> called Product</li>
+            <ul>
+                <li>With a Boolean constructor called <em>visible</em></li>
+                <li>and a Int constructor arg called <em>stock</em></li>
+                <li>and a method called available that returns</li>
+                <ul>
+                    <li><span class="number">true</span> if the product is visible and in stock</li>
+                    <li><span class="number">false</span> otherwise</li>
+                </ul>
+            </ul>
+        </ul>
+        <p style="text-align:center;">the AND operator is <code class="scala">&amp;&amp;</code></p>
+    </div>
+
+    <div class="step" data-x="37500">
+        <h2>Operators are methods</h2>
+        <pre><code class="scala">case class Product(price: Int) {
+  def +(p: Product) =
+    Product(price + p.price)
+}
+
+> Product(5).+(Product(8))
+> Product(5) +(Product(8))
+> Product(5) + Product(8)</code></pre>
+    </div>
+
+    <section class="step" data-x="39000">
+        <div style="text-align:left;">
+            <img src="images/nodocs.jpg" />
         </div>
+        <div style="text-align:right;">
+            <img src="images/fuuu.jpg" />
+        </div>
+    </section>
+
+    <section class="step" data-x="40500">
+        Functions
+    </section>
+
+    <div class="step" data-x="42000">
+        <h2>Functions</h2>
+        <pre><code class="scala">
+
+(<em>args</em>) => <em>body</em>
+
+val funky = (<em>args</em>) => <em>body</em></code></pre>
     </div>
 
-    <div class="step" data-x="10500" data-y="1600">
-        <h2>That's it!</h2>
-        <br />
-        <br />
-        <br />
-        <br />
-        <p style="text-align:center">
-            <a href="http://stash.vm.wtf.nap:7990/users/i.forsey/repos/nap-impress-template/browse">
-                Fork the source to make your own slide decks!
-            </a>
-        </p>
+    <div class="step" data-x="43500">
+        <h2>Functions</h2>
+        <pre><code class="scala">val markdown =
+  (pennies: Int, percent: Double) =>
+    (pennies * percent).toInt
+
+> val r = markdown(80, 0.5)
+
+> val r = markdown.apply(80, 0.5)</code></pre>
     </div>
+
+    <div class="step" data-x="45000">
+        <h2>Task</h2>
+        <pre><code class="scala">case class Sku(id: String) {
+  val size = id.split('-')(1).toInt
+}
+> val sku = Sku("1-10")
+> large(Sku("1-10")) == true
+> large(Sku("1-9")) == false</code></pre>
+<br />
+        <p>Write the function <code>large</code>. It checks <code>sku.size</code> is > 10</p>
+    </div>
+
+    <div class="step" data-x="46500">
+        <h2>Task</h2>
+        <pre><code class="scala">val large = 
+  (sku: <span class="codehl">Sku</span>) => sku.size > 9
+
+val large: <span class="codehl">Sku => Boolean</span> = 
+  (sku) => sku.size > 9
+
+val large: <span class="codehl">Sku => Boolean</span> = 
+  _.size > 9</code></pre>
+    </div>
+
+    <section class="step" data-x="48000">
+        Collections and Options
+    </section>
+
+    <div class="step" data-x="49500">
+        <h2>Collections</h2>
+        <ul>
+            <li>List</li>
+                <ul><li>think Java LinkedList</li></ul>
+            <li>Vector</li>
+                <ul><li>think Java ArrayList</li></ul>
+            <li>Set</li>
+            <li>Map</li>
+        </ul>
+    </div>
+
+    <div class="step" data-x="51000">
+        <h2>Collections</h2>
+        <pre><code class="scala">val skus = List(
+  Sku("1-9"), 
+  Sku("1-10"), 
+  Sku("2-11")
+)
+
+skus: List[Sku] = List(Sku(1-9), Sku(1-10), Sku("2-11"))</code></pre>
+    </div>
+
+    <div class="step" data-x="52500">
+        <h2>Collections</h2>
+        <pre><code class="scala">val skus = 
+  Sku("1-9") :: 
+  Sku("1-10") :: 
+  Sku("2-11") :: Nil
+
+skus: List[Sku] = List(Sku(1-9), Sku(1-10), Sku("2-11"))</code></pre>
+    </div>
+
+    <div class="step" data-x="54000">
+        <h2>Collections</h2>
+        <pre class="fadedcode">val skus = List(
+  Sku("1-9"), Sku("1-10"), Sku("2-11")
+)</pre>
+        <pre><code class="scala">> skus.count(large)
+2
+
+skus.count(_.size > 9)
+2</code></pre>
+    </div>
+
+    <div class="step" data-x="55500">
+        <h2>Collections</h2>
+        <pre class="fadedcode">val skus = List(
+  Sku("1-9"), Sku("1-10"), Sku("2-11")
+)</pre>
+        <pre><code class="scala">> skus.filter(large)
+List(Sku(1-10), Sku(2-11))
+
+> skus.filter(_.id.startsWith("2"))
+List(2-11)</code></pre>
+    </div>
+
+    <div class="step" data-x="57000">
+        <h2>Collections</h2>
+        <pre class="fadedcode">val skus = List(
+  Sku("1-9"), Sku("1-10"), Sku("2-11")
+)</pre>
+        <pre><code class="scala">> skus.map(large)
+List(false, true, true)
+
+> skus.map(_.size)
+List(9, 10, 11)</code></pre>
+    </div>
+
+    <div class="step" data-x="58500">
+        <h2>Collections</h2>
+        <pre class="fadedcode">val skus = List(
+  Sku("1-9"), Sku("1-10"), Sku("2-11")
+)</pre>
+        <pre><code class="scala">> skus.collect {
+  case Sku("999-1") => "SHIPPING"
+  case Sku("2-11") => "PACKAGING"
+}
+res0: List[String] = List(PACKAGING)</code></pre>
+    </div>
+
+    <div class="step" data-x="60000">
+        <h2>Collections</h2>
+        <pre><code class="scala">> val skus = List("1-1", "2-2", "3-3")
+> val pids = List(1, 2, 3)
+> pids zip skus
+
+res0 = List((1,1-1), (2,2-2), (3,3-3))</code></pre>
+    </div>
+
+    <section class="step" data-x="61500">
+        <img src="images/onelineofcode.jpg" style="height:700px;" />
+    </section>
+
+    <div class="step" data-x="63000">
+        <h2>Task</h2>
+        <pre><code class="scala" style="font-size:30px; line-height:40px;">case class GiftCard(price: Int, currency: String)
+
+val giftCards = (100 to 5000 by 50).flatMap(p =>
+  GiftCard(p, "GBP") :: GiftCard(p, "USD") :: 
+  GiftCard(p, "HDK") :: Nil)</code></pre>
+
+        <ul>
+            <li>Work out the sum of all the <span class="string">"GBP"</span> <code class="scala">giftCards</code></li>
+            <li>Answer should be <span class="number">252450</span></li>
+        </li>
+
+        <p style="text-align: center;">You can call <code class="scala">.sum</code> on a <code class="scala">List[Int]</code> to get a total</p>
+
+    </div>
+
+    <div class="step" data-x="64500">
+        <h2>Some answers</h2>
+        <pre><code class="scala">val res = giftCards.
+  filter(_.currency == "GBP").
+  map(_.price).
+  sum
+
+val res = giftCards.collect { 
+  case GiftCard(x, "GBP") => x  
+}.sum</code></pre>
+    </div>
+
+    <div class="step" data-x="66000">
+        <h2>Functions again</h2>
+        <pre><code class="scala">ints.map(
+  i => if(i == 0) "zero!" else i.toString
+)
+
+ints.collect {
+  case 0 => "zero!"
+}</code></pre>
+    </div>
+
+    <div class="step" data-x="67500">
+        <h2>Functions again</h2>
+        <pre><code class="scala">ints.map(
+  <span class="yhl">i => if(i == 0) "zero!" else i.toString</span>
+)
+
+ints.collect {
+  case 0 => "zero!"
+}</code></pre>
+    </div>
+
+    <div class="step" data-x="69000">
+        <h2>Functions again</h2>
+        <pre><code class="scala">ints.map(
+  <span class="yhl">i => if(i == 0) "zero!" else i.toString</span>
+)
+
+ints.collect <span class="yhl">{
+  case 0 => "zero!"
+}</span></code></pre>
+    </div>
+
+    <div class="step" data-x="70500">
+        <h2>Functions again</h2>
+        <pre><code class="scala">ints.map(
+  i => if(i == 0) "zero!" else i.toString
+)
+
+ints.map {
+  case 0 => "zero!"
+  case i => i.toString
+}</code></pre>
+    </div>
+
+    <div class="step" data-x="72000">
+        <h2>Partial Functions</h2>
+
+        <ul>
+            <li>Partial functions only take one argument (unary)</li>
+            <li>Doesn’t have to handle all possible values</li>
+        </ul>
+        <pre><code class="scala">val f: Int => String = {
+  case 0 => "zero!" 
+  case 1 => "one!"
+}</code></pre>
+        <p style="margin-top:20px; text-align:center; font-style: italic;">What happens if we call this with the argument 3?</p>
+    </div>
+
+    <div class="step" data-x="73500">
+        <h2>Options</h2>
+
+        <ul>
+            <li>The <code class="scala">Option[T]</code> type is used to represent optional data</li>
+            <li>Two sub classes</li>
+            <ul>
+                <li><code class="scala">case class Some(val x)</code></li>
+                <li><code class="scala">case object None</code></li>
+            </ul>
+        </ul>
+    </div>
+
+    <section class="step" data-x="75000">
+        <img src="images/nullpointer.jpg" style="width:900px;"/>
+    </section>
+
+    <div class="step" data-x="76500">
+        <h2>Options</h2>
+        <pre><code class="scala">> val r = Some("intl")
+
+> val r = None
+
+> val r = Option("intl")
+
+> val r = Option(null)</code></pre>
+    </div>
+
+    <div class="step" data-x="78000">
+        <h2>Options</h2>
+        <pre><code class="scala">> val region: Option[String] = …
+
+> region.getOrElse("intl")
+"intl"</code></pre>
+    </div>
+
+    <div class="step" data-x="79500">
+        <h2>Options</h2>
+        <pre><code class="scala">> val query: Option[String] = …
+> val header: Option[String] = …
+
+> val token = query.orElse(header)
+Some("intl")</code></pre>
+    </div>
+
+    <div class="step" data-x="81000">
+        <h2>Options</h2>
+        <pre><code class="scala">> val designerId: Option[Int] = …
+
+> val designer = designerId
+  .map(getDesignerFromDb)
+
+page = Some(Designer(Jimmy Choo))
+page = None</code></pre>
+    </div>
+
+    <div class="step" data-x="82500">
+        <h2>Task</h2>
+        <ul>
+            <li>Make a case class WishlistItem</li>
+            <ul>
+                <li>It has a sku of type String</li>
+                <li>and an optionally a note of type String</li>
+            </ul>
+            <li>Give WishlistItem a method asString that returns like so:</li>
+        </ul>
+        <pre><code class="scala">WishlistItem("1-1", None).asString
+"1-1"
+WishlistItem("1-1", Some("a")).asString
+"1-1 (a)"</code></pre>
+    </div>
+
+    <div class="step" data-x="84000">
+        <h2>Some Solutions</h2>
+        <pre><code class="scala" style="font-size:30px; line-height:40px;">def asString = 
+  sku + notes.map(" (" + _ + ")").getOrElse("")
+
+def asString = 
+  notes.map(sku + " (" + _ + ")").getOrElse(sku)
+
+def asString = 
+  sku + 
+  (if(notes.nonEmpty) " (" + notes.get + ")" else "")</code></pre>
+    </div>
+
+    <section class="step" data-x="85500">
+        Traits
+    </section>
+
+    <div class="step" data-x="87000">
+        <h2>Traits</h2>
+        <ul>
+            <li>Like Classes but</li>
+            <ul>
+                <li>No constructor</li>
+                <li>Can do multiple inheritance</li>
+            </ul>
+        </ul>
+    </div>
+
+    <div class="step" data-x="88500">
+        <h2>Traits</h2>
+        <pre><code class="scala">case class Prod(price: Int)
+
+trait ProdList {
+  def prods: List[Prod]
+  def total = prods.map(_.price).sum
+}</code></pre>
+    </div>
+
+    <div class="step" data-x="90000">
+        <h2>Traits</h2>
+        <pre><code class="scala">case class Basket(prods: List[Prod])
+    extends ProdList
+
+val b = Basket(
+  Prod(3) :: Prod(5) :: Nil
+)
+
+b.total == 8</code></pre>
+    </div>
+
+    <div class="step" data-x="91500">
+        <h2>Traits</h2>
+        <pre><code class="scala">case class Wishlist(prods: List[Prod])
+
+val w = new Wishlist(Prod(3) :: Nil)
+  with ProdList
+
+w.total == 3</code></pre>
+    </div>
+
+    <div class="step" data-x="93000">
+        <h2>Traits</h2>
+        <ul>
+            <li>Define a trait called <code class="scala">Customer</code> with</li>
+            <ul>
+                <li>abstract def reservedSkus of type List[String]</li>
+                <li>abstract def maxReservations of type Int</li>
+                <li>def canReserve of type Boolean</li>
+                <ul><li><code class="scala">reservedSkus &lt; maxReservations?</code></li></ul>
+            </ul>
+            <li>Define a class called VIP; inherits from Customer</li>
+            <ul>
+                <li>implement maxReservations with a val set to 3</li>
+            </ul>
+            <li>Try calling canReserve on some instances</li>
+        </ul>
+    </div>
+
+    <div class="step" data-x="94500">
+        <h2>Traits</h2>
+        <pre><code class="scala" style="font-size:30px; line-height:40px;">trait Customer {
+  def reservedSkus: List[String] 
+  def maxReservations: Int
+  def canReserve = 
+    reservedSkus.size &lt; maxReservations
+}
+
+case class VIP(reservedSkus: List[String]) 
+    extends Customer {
+  val maxReservations = 3
+}</code></pre>
+    </div>
+
+    <section class="step" data-x="96000">
+        Objects
+    </section>
+
+    <div class="step" data-x="97500">
+        <h2>Objects</h2>
+        <pre><code class="scala">object Counties {
+  val countries = "GB" :: "ZH" :: Nil
+
+  def supported(c: String) =
+    countries.contains(c)
+}
+
+> Countries.supported("ZH")
+> true</code></pre>
+    </div>
+
+    <div class="step" data-x="99000">
+        <h2>Objects</h2>
+        <pre><code class="scala">class Designer(name: String)
+
+object Designer {
+  def apply(name: String) =
+    new Designer(name)
+}
+
+> Designer("Jimmy Choo")</code></pre>
+    </div>
+
+    <section class="step" data-x="100500">
+        Implicits
+    </section>
+
+    <div class="step" data-x="102000">
+        <h2>Implicits</h2>
+        <ul>
+            <li>The <code class="scala">implicit</code> keyword can be used:</li>
+            <ul>
+                <li>On a class/method - implicit conversions</li>
+                <li>On a <code class="scala">val</code> - implicit parameters</li>
+            </ul>
+        </ul>
+    </div>
+
+    <div class="step" data-x="103500">
+        <h2>Implicit conversions</h2>
+        <pre><code class="scala">case class HttpRequest (
+  headers: List[HttpHeader]
+)
+
+case class HttpHeader (
+  name: String, value: String
+)</code></pre>
+    </div>
+
+    <section class="step" data-x="105000">
+        <img src="images/noheadervalue.jpg" style="height:700px;" />
+    </section>
+
+    <div class="step" data-x="106500">
+        <h2>Implicit conversions</h2>
+        <pre><code class="scala">implicit class PimpedHttpRequest(r: HttpRequest) {
+  def headerValue(name: String) = 
+    r.headers.find(_.name == name)
+}
+
+val request = HttpRequest(…)
+request.headerValue("page")</code></pre>
+    </div>
+
+    <div class="step" data-x="108000">
+        <h2>Task</h2>
+        <pre><code class="scala">case class Duration(mins: Int, secs: Int)
+        </code></pre>
+        <ul>
+            <li>Pimp Duration so it has a totalSecs method</li>
+            <ul>
+                <li>it should return the time in seconds for the duration</li>
+            </ul>
+        </ul>
+        <pre><code class="scala">
+Duration(1, 30).totalSecs == 90</code></pre>
+    </div>
+
+    <div class="step" data-x="109500" style="font-size:30px; line-height:40px;">
+        <h2>An Answer</h2>
+        <pre><code class="scala">implicit class PimpedDuration(d: Duration) {
+  def totalSecs = d.mins * 60 + d.secs
+}
+
+Duration(1, 30).totalSecs == 90</code></pre>
+    </div>
+
+    <div class="step" data-x="111000" style="font-size:30px; line-height:40px;">
+        <h2>Implicit Parameters</h2>
+        <pre><code class="scala">implicit val t = db.newTranscation()
+
+def addToBasket(sku: Sku)
+               (implicit t: Transaction) {
+  … 
+  t.commit
+}
+
+addToBasket("12345-67")
+addToBasket("12345-67")(t)</code></pre>
+    </div>
+
+    <div class="step" data-x="112500">
+        <h2>Other topics</h2>
+        <ul style="font-size:40px; line-height:40px;">
+            <li>lazy vals
+            <li>Type Aliases</li>
+            <li>Structural Types (duck typing)</li>
+            <li>Currying</li>
+            <li>Value Class</li>
+            <li>String Interpolation</li>
+            <li>Either / Try</li>
+            <li>Type Classes / The Magnet Pattern</li>
+            <li>Generic Types - covariant / contravariant</li>
+            <li>for comprehensions</li>
+            <li>Nested methods</li>
+            <li>Macros</li>
+        </ul>
+    <div>
 
 </div>
 

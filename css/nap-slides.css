@@ -29,6 +29,26 @@ body {
     line-height: 1;
 }
 
+.codehl, .codehl .number {
+    color: red;
+}
+
+.yhl {
+    background-color:rgba(245,208,76, 0.75)
+}
+
+.fadedcode {
+    color: #999;
+    font-family: monospace;
+}
+
+.nobullet {
+   list-style: none;
+   margin-left: 0;
+   padding-left: 1em;
+   text-indent: -1em;
+}
+
 /* Fallback message for clients that don't support impress */
 
 .fallback-message {
@@ -122,7 +142,7 @@ section.step {
 
 .step p,ul,pre {
     margin: 10px 30px;
-    line-height: 60px;
+    line-height: 50px;
 }
 
 div.step:after {

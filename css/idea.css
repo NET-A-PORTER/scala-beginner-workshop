@@ -48,7 +48,7 @@ pre .id,
 pre .attr_selector,
 pre .pseudo,
 pre .literal,
-pre .keyword,
+.keyword,
 pre .hexcolor,
 pre .css .function,
 pre .ini .title,
@@ -60,29 +60,32 @@ pre .tex .command,
 pre .request,
 pre .status {
   font-weight: bold;
+  font-family: monospace;
   color: #000080;
 }
 
 pre .attribute,
 pre .rules .keyword,
-pre .number,
+.number,
 pre .date,
 pre .regexp,
 pre .tex .special {
+  font-family: monospace;
   font-weight: bold;
   color: #0000ff;
 }
 
-pre .number,
+.number,
 pre .regexp {
   font-weight: normal;
 }
 
-pre .string,
+.string,
 pre .value,
 pre .filter .argument,
 pre .css .function .params,
 pre .apache .tag {
+  font-family: monospace;
   color: #008000;
   font-weight: bold;
 }
