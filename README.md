@@ -1,7 +1,4 @@
-NET-A-PORTER impress.js template
-================================
+NET-A-PORTER scala beginner workshop
+====================================
 
-View the demo [here](http://naplabs.net-a-porter.com/nap-impress-template)
-
-Modify index.html to make your own slide deck!
-
+Slide deck for the NET-A-PORTER scala beginner workshop. View it [here](http://net-a-porter.github.io/scala-beginner-workshop)
