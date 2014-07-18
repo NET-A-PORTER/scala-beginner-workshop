@@ -32,7 +32,7 @@
     <!--
         Slides start here!
     -->
-    <section class="step" data-x="-1500">
+    <section class="step" data-x="0">
         <h2 class="group-logo">
             <span class="the">THE</span><br/>NET-A-PORTER<br/>GROUP
         </h2>
@@ -44,7 +44,7 @@
         </h3>
     </section>
 
-    <div class="step" data-x="0">
+    <div class="step" data-x="1500">
         <h2>What is Scala?</h2>
         <ul>
             <li>OO and Functional</li>
@@ -60,7 +60,7 @@
         </ul>
     </div>
 
-    <div class="step" data-x="1500">
+    <div class="step" data-x="3000">
         <h2>Why Scala?</h2>
         <ul>
             <li>Scalable</li>
@@ -73,7 +73,7 @@
         </ul>
     </div>
 
-    <div class="step" data-x="3000">
+    <div class="step" data-x="4500">
         <h2>Agenda</h2>
         <ul>
             <li>vals and vars</li>
@@ -87,11 +87,11 @@
         </ul>
     </div>
 
-    <section class="step" data-x="4500">
+    <section class="step" data-x="6000">
         vals and vars
     </section>
 
-    <div class="step" data-x="6000">
+    <div class="step" data-x="7500">
         <h2>vals and vars</h2>
         <ul>
             <li><span class="keyword">val</span> (value)</li>
@@ -110,7 +110,7 @@
         </ul>
     </div>
 
-    <div class="step" data-x="7500">
+    <div class="step" data-x="9000">
         <h2>Examples</h2>
         <pre><code class="scala">val pid = 12345
 
@@ -125,19 +125,19 @@ markdown = 0.7
         </code></pre>
     </div>
 
-    <div class="step" data-x="7500">
+    <div class="step" data-x="10500">
         <h2>Task</h2>
         <ul>
             <li>Create a val and a var</li>
-            <li>Try to reassign a new value to them</li>
+            <li>Try to reassign them</li>
         </ul>
     </div>
 
-    <section class="step" data-x="9000">
+    <section class="step" data-x="12000">
         <img src="images/valyuno.jpg" style="height:700px;" />
     </section>
 
-    <div class="step" data-x="10500">
+    <div class="step" data-x="13500">
         <h2>Examples</h2>
         <pre><code class="scala">val pid<span class="codehl">: Int</span> = 12345
 
@@ -152,11 +152,11 @@ var markdown<span class="codehl">: Double</span> = 0.5
         </code></pre>
     </div>
 
-    <section class="step" data-x="12000">
+    <section class="step" data-x="15000">
         methods
     </section>
 
-    <div class="step" data-x="13500">
+    <div class="step" data-x="16500">
         <h2>def (method)</h2>
         <pre><code class="scala">def markdown(pennies: Int, 
              percent: Double) = 
@@ -167,7 +167,7 @@ r: Int = 40
         </code></pre>
     </div>
 
-    <div class="step" data-x="15000">
+    <div class="step" data-x="18000">
         <h2>def (method)</h2>
         <pre><code class="scala">def markdown(pennies: Int, 
              percent: Double)<span class="codehl">: Int</span> = 
@@ -178,7 +178,7 @@ r: Int = 40
         </code></pre>
     </div>
 
-    <div class="step" data-x="16500">
+    <div class="step" data-x="19500">
         <h2>def (method)</h2>
         <pre><code class="scala">def markdown(pennies: Int, 
              percent: Double) = <span class="codehl">{</span>
@@ -190,7 +190,7 @@ r: Int = 40
         </code></pre>
     </div>
 
-    <div class="step" data-x="18000">
+    <div class="step" data-x="21000">
         <h2>Task</h2>
         <ul>
             <li>Write a method called slug</li>
@@ -209,7 +209,7 @@ r: Int = 40
         </ul>
     </div>
 
-    <div class="step" data-x="19500">
+    <div class="step" data-x="22500">
         <h2>def (method)</h2>
         <pre><code class="scala">def slug(stock: Int) =
   if(stock == 0) "SOLD_OUT"
@@ -220,7 +220,7 @@ s: String = SOLD_OUT
         </code></pre>
     </div>
 
-    <div class="step" data-x="21000">
+    <div class="step" data-x="24000">
         <h2>Default Parameters</h2>
         <pre><code class="scala">def markdown(pennies: Int, 
              percent: Double<span class="codehl"> = 0.5</span>) = 
@@ -234,7 +234,7 @@ r: Int = 20
         </code></pre>
     </div>
 
-    <div class="step" data-x="22500">
+    <div class="step" data-x="25500">
         <h2>By Name Parameters</h2>
         <pre><code class="scala">def markdown(pennies: Int = 80, 
              percent: Double = 0.5) = 
@@ -246,11 +246,11 @@ r: Int = 20
         </code></pre>
     </div>
 
-    <section class="step" data-x="24000">
+    <section class="step" data-x="27000">
         classes
     </section>
 
-    <div class="step" data-x="25500">
+    <div class="step" data-x="28500">
         <h2>Classes</h2>
         <pre><code class="scala">
 
@@ -260,7 +260,7 @@ val p = new Product(100)
         </code></pre>
     </div>
 
-    <div class="step" data-x="27000">
+    <div class="step" data-x="30000">
         <h2>Classes</h2>
         <pre><code class="scala">
 
@@ -271,7 +271,7 @@ p.stock
         </code></pre>
     </div>
 
-    <div class="step" data-x="28500">
+    <div class="step" data-x="31500">
         <h2>Classes</h2>
         <pre><code class="scala">
 class Product(val stock: Int) {
@@ -283,7 +283,7 @@ p.lowStock
         </code></pre>
     </div>
 
-    <div class="step" data-x="30000">
+    <div class="step" data-x="33000">
         <h2>Classes</h2>
         <pre><code class="scala">
 class Product(val stock: Int) {
@@ -295,7 +295,7 @@ p.lowStock
         </code></pre>
     </div>
 
-    <div class="step" data-x="31500">
+    <div class="step" data-x="34500">
         <h2>Case Classes</h2>
         <pre><code class="scala">case class Product(stock: Int)
 Product(100)</code></pre>
@@ -309,7 +309,7 @@ Product(100)</code></pre>
     </ul>
     </div>
 
-    <div class="step" data-x="33000">
+    <div class="step" data-x="36000">
         <h2>Case Class - Copy</h2>
         <pre><code class="scala">val p = Product(100)
 
@@ -318,7 +318,7 @@ val p2 = p.copy(stock = 99)
 p2.stock == 99</code></pre>
     </div>
 
-    <div class="step" data-x="34500">
+    <div class="step" data-x="37500">
         <h2>Case Class - Pattern Match</h2>
         <pre><code class="scala">val p = Product(100)
 
@@ -330,7 +330,7 @@ val slug = p match {
 }</code></pre>
     </div>
 
-    <div class="step" data-x="36000">
+    <div class="step" data-x="39000">
         <h2>Task</h2>
         <ul>
             <li>Write a <span class="keywork">case class</span> called Product</li>
@@ -347,7 +347,7 @@ val slug = p match {
         <p style="text-align:center;">the AND operator is <code class="scala">&amp;&amp;</code></p>
     </div>
 
-    <div class="step" data-x="37500">
+    <div class="step" data-x="40500">
         <h2>Operators are methods</h2>
         <pre><code class="scala">case class Product(price: Int) {
   def +(p: Product) =
@@ -359,7 +359,7 @@ val slug = p match {
 > Product(5) + Product(8)</code></pre>
     </div>
 
-    <section class="step" data-x="39000">
+    <section class="step" data-x="42000">
         <div style="text-align:left;">
             <img src="images/nodocs.jpg" />
         </div>
@@ -368,11 +368,11 @@ val slug = p match {
         </div>
     </section>
 
-    <section class="step" data-x="40500">
+    <section class="step" data-x="43500">
         Functions
     </section>
 
-    <div class="step" data-x="42000">
+    <div class="step" data-x="45000">
         <h2>Functions</h2>
         <pre><code class="scala">
 
@@ -381,7 +381,7 @@ val slug = p match {
 val funky = (<em>args</em>) => <em>body</em></code></pre>
     </div>
 
-    <div class="step" data-x="43500">
+    <div class="step" data-x="46500">
         <h2>Functions</h2>
         <pre><code class="scala">val markdown =
   (pennies: Int, percent: Double) =>
@@ -392,7 +392,7 @@ val funky = (<em>args</em>) => <em>body</em></code></pre>
 > val r = markdown.apply(80, 0.5)</code></pre>
     </div>
 
-    <div class="step" data-x="45000">
+    <div class="step" data-x="48000">
         <h2>Task</h2>
         <pre><code class="scala">case class Sku(id: String) {
   val size = id.split('-')(1).toInt
@@ -404,7 +404,7 @@ val funky = (<em>args</em>) => <em>body</em></code></pre>
         <p>Write the function <code>large</code>. It checks <code>sku.size</code> is > 10</p>
     </div>
 
-    <div class="step" data-x="46500">
+    <div class="step" data-x="49500">
         <h2>Task</h2>
         <pre><code class="scala">val large = 
   (sku: <span class="codehl">Sku</span>) => sku.size > 9
@@ -416,11 +416,11 @@ val large: <span class="codehl">Sku => Boolean</span> =
   _.size > 9</code></pre>
     </div>
 
-    <section class="step" data-x="48000">
+    <section class="step" data-x="51000">
         Collections and Options
     </section>
 
-    <div class="step" data-x="49500">
+    <div class="step" data-x="52500">
         <h2>Collections</h2>
         <ul>
             <li>List</li>
@@ -432,7 +432,7 @@ val large: <span class="codehl">Sku => Boolean</span> =
         </ul>
     </div>
 
-    <div class="step" data-x="51000">
+    <div class="step" data-x="54000">
         <h2>Collections</h2>
         <pre><code class="scala">val skus = List(
   Sku("1-9"), 
@@ -443,7 +443,7 @@ val large: <span class="codehl">Sku => Boolean</span> =
 skus: List[Sku] = List(Sku(1-9), Sku(1-10), Sku("2-11"))</code></pre>
     </div>
 
-    <div class="step" data-x="52500">
+    <div class="step" data-x="55500">
         <h2>Collections</h2>
         <pre><code class="scala">val skus = 
   Sku("1-9") :: 
@@ -453,7 +453,7 @@ skus: List[Sku] = List(Sku(1-9), Sku(1-10), Sku("2-11"))</code></pre>
 skus: List[Sku] = List(Sku(1-9), Sku(1-10), Sku("2-11"))</code></pre>
     </div>
 
-    <div class="step" data-x="54000">
+    <div class="step" data-x="57000">
         <h2>Collections</h2>
         <pre class="fadedcode">val skus = List(
   Sku("1-9"), Sku("1-10"), Sku("2-11")
@@ -465,7 +465,7 @@ skus.count(_.size > 9)
 2</code></pre>
     </div>
 
-    <div class="step" data-x="55500">
+    <div class="step" data-x="58500">
         <h2>Collections</h2>
         <pre class="fadedcode">val skus = List(
   Sku("1-9"), Sku("1-10"), Sku("2-11")
@@ -477,7 +477,7 @@ List(Sku(1-10), Sku(2-11))
 List(2-11)</code></pre>
     </div>
 
-    <div class="step" data-x="57000">
+    <div class="step" data-x="60000">
         <h2>Collections</h2>
         <pre class="fadedcode">val skus = List(
   Sku("1-9"), Sku("1-10"), Sku("2-11")
@@ -489,7 +489,7 @@ List(false, true, true)
 List(9, 10, 11)</code></pre>
     </div>
 
-    <div class="step" data-x="58500">
+    <div class="step" data-x="61500">
         <h2>Collections</h2>
         <pre class="fadedcode">val skus = List(
   Sku("1-9"), Sku("1-10"), Sku("2-11")
@@ -501,7 +501,7 @@ List(9, 10, 11)</code></pre>
 res0: List[String] = List(PACKAGING)</code></pre>
     </div>
 
-    <div class="step" data-x="60000">
+    <div class="step" data-x="63000">
         <h2>Collections</h2>
         <pre><code class="scala">> val skus = List("1-1", "2-2", "3-3")
 > val pids = List(1, 2, 3)
@@ -510,11 +510,11 @@ res0: List[String] = List(PACKAGING)</code></pre>
 res0 = List((1,1-1), (2,2-2), (3,3-3))</code></pre>
     </div>
 
-    <section class="step" data-x="61500">
+    <section class="step" data-x="64500">
         <img src="images/onelineofcode.jpg" style="height:700px;" />
     </section>
 
-    <div class="step" data-x="63000">
+    <div class="step" data-x="66000">
         <h2>Task</h2>
         <pre><code class="scala" style="font-size:30px; line-height:40px;">case class GiftCard(price: Int, currency: String)
 
@@ -531,7 +531,7 @@ val giftCards = (100 to 5000 by 50).flatMap(p =>
 
     </div>
 
-    <div class="step" data-x="64500">
+    <div class="step" data-x="67500">
         <h2>Some answers</h2>
         <pre><code class="scala">val res = giftCards.
   filter(_.currency == "GBP").
@@ -543,7 +543,7 @@ val res = giftCards.collect {
 }.sum</code></pre>
     </div>
 
-    <div class="step" data-x="66000">
+    <div class="step" data-x="69000">
         <h2>Functions again</h2>
         <pre><code class="scala">ints.map(
   i => if(i == 0) "zero!" else i.toString
@@ -554,7 +554,7 @@ ints.collect {
 }</code></pre>
     </div>
 
-    <div class="step" data-x="67500">
+    <div class="step" data-x="70500">
         <h2>Functions again</h2>
         <pre><code class="scala">ints.map(
   <span class="yhl">i => if(i == 0) "zero!" else i.toString</span>
@@ -565,7 +565,7 @@ ints.collect {
 }</code></pre>
     </div>
 
-    <div class="step" data-x="69000">
+    <div class="step" data-x="72000">
         <h2>Functions again</h2>
         <pre><code class="scala">ints.map(
   <span class="yhl">i => if(i == 0) "zero!" else i.toString</span>
@@ -576,7 +576,7 @@ ints.collect <span class="yhl">{
 }</span></code></pre>
     </div>
 
-    <div class="step" data-x="70500">
+    <div class="step" data-x="73500">
         <h2>Functions again</h2>
         <pre><code class="scala">ints.map(
   i => if(i == 0) "zero!" else i.toString
@@ -588,7 +588,7 @@ ints.map {
 }</code></pre>
     </div>
 
-    <div class="step" data-x="72000">
+    <div class="step" data-x="75000">
         <h2>Partial Functions</h2>
 
         <ul>
@@ -602,7 +602,7 @@ ints.map {
         <p style="margin-top:20px; text-align:center; font-style: italic;">What happens if we call this with the argument 3?</p>
     </div>
 
-    <div class="step" data-x="73500">
+    <div class="step" data-x="76500">
         <h2>Options</h2>
 
         <ul>
@@ -615,11 +615,11 @@ ints.map {
         </ul>
     </div>
 
-    <section class="step" data-x="75000">
+    <section class="step" data-x="78000">
         <img src="images/nullpointer.jpg" style="width:900px;"/>
     </section>
 
-    <div class="step" data-x="76500">
+    <div class="step" data-x="79500">
         <h2>Options</h2>
         <pre><code class="scala">> val r = Some("intl")
 
@@ -630,7 +630,7 @@ ints.map {
 > val r = Option(null)</code></pre>
     </div>
 
-    <div class="step" data-x="78000">
+    <div class="step" data-x="81000">
         <h2>Options</h2>
         <pre><code class="scala">> val region: Option[String] = …
 
@@ -638,7 +638,7 @@ ints.map {
 "intl"</code></pre>
     </div>
 
-    <div class="step" data-x="79500">
+    <div class="step" data-x="82500">
         <h2>Options</h2>
         <pre><code class="scala">> val query: Option[String] = …
 > val header: Option[String] = …
@@ -647,7 +647,7 @@ ints.map {
 Some("intl")</code></pre>
     </div>
 
-    <div class="step" data-x="81000">
+    <div class="step" data-x="84000">
         <h2>Options</h2>
         <pre><code class="scala">> val designerId: Option[Int] = …
 
@@ -658,7 +658,7 @@ page = Some(Designer(Jimmy Choo))
 page = None</code></pre>
     </div>
 
-    <div class="step" data-x="82500">
+    <div class="step" data-x="85500">
         <h2>Task</h2>
         <ul>
             <li>Make a case class WishlistItem</li>
@@ -674,7 +674,7 @@ WishlistItem("1-1", Some("a")).asString
 "1-1 (a)"</code></pre>
     </div>
 
-    <div class="step" data-x="84000">
+    <div class="step" data-x="87000">
         <h2>Some Solutions</h2>
         <pre><code class="scala" style="font-size:30px; line-height:40px;">def asString = 
   sku + notes.map(" (" + _ + ")").getOrElse("")
@@ -687,11 +687,11 @@ def asString =
   (if(notes.nonEmpty) " (" + notes.get + ")" else "")</code></pre>
     </div>
 
-    <section class="step" data-x="85500">
+    <section class="step" data-x="88500">
         Traits
     </section>
 
-    <div class="step" data-x="87000">
+    <div class="step" data-x="90000">
         <h2>Traits</h2>
         <ul>
             <li>Like Classes but</li>
@@ -702,7 +702,7 @@ def asString =
         </ul>
     </div>
 
-    <div class="step" data-x="88500">
+    <div class="step" data-x="91500">
         <h2>Traits</h2>
         <pre><code class="scala">case class Prod(price: Int)
 
@@ -712,7 +712,7 @@ trait ProdList {
 }</code></pre>
     </div>
 
-    <div class="step" data-x="90000">
+    <div class="step" data-x="93000">
         <h2>Traits</h2>
         <pre><code class="scala">case class Basket(prods: List[Prod])
     extends ProdList
@@ -724,7 +724,7 @@ val b = Basket(
 b.total == 8</code></pre>
     </div>
 
-    <div class="step" data-x="91500">
+    <div class="step" data-x="94500">
         <h2>Traits</h2>
         <pre><code class="scala">case class Wishlist(prods: List[Prod])
 
@@ -734,7 +734,7 @@ val w = new Wishlist(Prod(3) :: Nil)
 w.total == 3</code></pre>
     </div>
 
-    <div class="step" data-x="93000">
+    <div class="step" data-x="96000">
         <h2>Traits</h2>
         <ul>
             <li>Define a trait called <code class="scala">Customer</code> with</li>
@@ -752,7 +752,7 @@ w.total == 3</code></pre>
         </ul>
     </div>
 
-    <div class="step" data-x="94500">
+    <div class="step" data-x="97500">
         <h2>Traits</h2>
         <pre><code class="scala" style="font-size:30px; line-height:40px;">trait Customer {
   def reservedSkus: List[String] 
@@ -767,11 +767,11 @@ case class VIP(reservedSkus: List[String])
 }</code></pre>
     </div>
 
-    <section class="step" data-x="96000">
+    <section class="step" data-x="99000">
         Objects
     </section>
 
-    <div class="step" data-x="97500">
+    <div class="step" data-x="100500">
         <h2>Objects</h2>
         <pre><code class="scala">object Counties {
   val countries = "GB" :: "ZH" :: Nil
@@ -784,7 +784,7 @@ case class VIP(reservedSkus: List[String])
 > true</code></pre>
     </div>
 
-    <div class="step" data-x="99000">
+    <div class="step" data-x="102000">
         <h2>Objects</h2>
         <pre><code class="scala">class Designer(name: String)
 
@@ -796,11 +796,11 @@ object Designer {
 > Designer("Jimmy Choo")</code></pre>
     </div>
 
-    <section class="step" data-x="100500">
+    <section class="step" data-x="103500">
         Implicits
     </section>
 
-    <div class="step" data-x="102000">
+    <div class="step" data-x="105000">
         <h2>Implicits</h2>
         <ul>
             <li>The <code class="scala">implicit</code> keyword can be used:</li>
@@ -811,7 +811,7 @@ object Designer {
         </ul>
     </div>
 
-    <div class="step" data-x="103500">
+    <div class="step" data-x="106500">
         <h2>Implicit conversions</h2>
         <pre><code class="scala">case class HttpRequest (
   headers: List[HttpHeader]
@@ -822,11 +822,11 @@ case class HttpHeader (
 )</code></pre>
     </div>
 
-    <section class="step" data-x="105000">
+    <section class="step" data-x="108000">
         <img src="images/noheadervalue.jpg" style="height:700px;" />
     </section>
 
-    <div class="step" data-x="106500">
+    <div class="step" data-x="109500">
         <h2>Implicit conversions</h2>
         <pre><code class="scala">implicit class PimpedHttpRequest(r: HttpRequest) {
   def headerValue(name: String) = 
@@ -837,7 +837,7 @@ val request = HttpRequest(…)
 request.headerValue("page")</code></pre>
     </div>
 
-    <div class="step" data-x="108000">
+    <div class="step" data-x="111000">
         <h2>Task</h2>
         <pre><code class="scala">case class Duration(mins: Int, secs: Int)
         </code></pre>
@@ -851,7 +851,7 @@ request.headerValue("page")</code></pre>
 Duration(1, 30).totalSecs == 90</code></pre>
     </div>
 
-    <div class="step" data-x="109500" style="font-size:30px; line-height:40px;">
+    <div class="step" data-x="112500" style="font-size:30px; line-height:40px;">
         <h2>An Answer</h2>
         <pre><code class="scala">implicit class PimpedDuration(d: Duration) {
   def totalSecs = d.mins * 60 + d.secs
@@ -860,7 +860,7 @@ Duration(1, 30).totalSecs == 90</code></pre>
 Duration(1, 30).totalSecs == 90</code></pre>
     </div>
 
-    <div class="step" data-x="111000" style="font-size:30px; line-height:40px;">
+    <div class="step" data-x="114000" style="font-size:30px; line-height:40px;">
         <h2>Implicit Parameters</h2>
         <pre><code class="scala">implicit val t = db.newTranscation()
 
@@ -874,7 +874,7 @@ addToBasket("12345-67")
 addToBasket("12345-67")(t)</code></pre>
     </div>
 
-    <div class="step" data-x="112500">
+    <div class="step" data-x="115500">
         <h2>Other topics</h2>
         <ul style="font-size:40px; line-height:40px;">
             <li>lazy vals
