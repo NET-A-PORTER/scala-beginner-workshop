@@ -687,11 +687,34 @@ def asString =
   (if(notes.nonEmpty) " (" + notes.get + ")" else "")</code></pre>
     </div>
 
-    <section class="step" data-x="88500">
+    <div class="step" data-x="88500">
+        <h2>Callback Hell</h2>
+        <pre><code class="scala">
+val spielbergCast = movies.collect {
+
+  case Movie("Spielberg", cast) =>
+    cast.map(_.name)
+
+}
+.flatten
+</code></pre>
+    </div>
+
+    <div class="step" data-x="90000">
+        <h2>For Expressions</h2>
+        <pre><code class="scala">val spielbergCast = for {
+  movie <- movies
+  if movie.director.name == "Spielberg"
+  actor <- movie.cast
+} yield actor.name
+</code></pre>
+    </div>
+
+    <section class="step" data-x="91500">
         Traits
     </section>
 
-    <div class="step" data-x="90000">
+    <div class="step" data-x="93000">
         <h2>Traits</h2>
         <ul>
             <li>Like Classes but</li>
@@ -702,7 +725,7 @@ def asString =
         </ul>
     </div>
 
-    <div class="step" data-x="91500">
+    <div class="step" data-x="94500">
         <h2>Traits</h2>
         <pre><code class="scala">case class Prod(price: Int)
 
@@ -712,7 +735,7 @@ trait ProdList {
 }</code></pre>
     </div>
 
-    <div class="step" data-x="93000">
+    <div class="step" data-x="96000">
         <h2>Traits</h2>
         <pre><code class="scala">case class Basket(prods: List[Prod])
     extends ProdList
@@ -724,7 +747,7 @@ val b = Basket(
 b.total == 8</code></pre>
     </div>
 
-    <div class="step" data-x="94500">
+    <div class="step" data-x="97500">
         <h2>Traits</h2>
         <pre><code class="scala">case class Wishlist(prods: List[Prod])
 
@@ -734,7 +757,7 @@ val w = new Wishlist(Prod(3) :: Nil)
 w.total == 3</code></pre>
     </div>
 
-    <div class="step" data-x="96000">
+    <div class="step" data-x="99000">
         <h2>Traits</h2>
         <ul>
             <li>Define a trait called <code class="scala">Customer</code> with</li>
@@ -752,7 +775,7 @@ w.total == 3</code></pre>
         </ul>
     </div>
 
-    <div class="step" data-x="97500">
+    <div class="step" data-x="100500">
         <h2>Traits</h2>
         <pre><code class="scala" style="font-size:30px; line-height:40px;">trait Customer {
   def reservedSkus: List[String] 
@@ -767,11 +790,11 @@ case class VIP(reservedSkus: List[String])
 }</code></pre>
     </div>
 
-    <section class="step" data-x="99000">
+    <section class="step" data-x="102000">
         Objects
     </section>
 
-    <div class="step" data-x="100500">
+    <div class="step" data-x="103500">
         <h2>Objects</h2>
         <pre><code class="scala">object Counties {
   val countries = "GB" :: "ZH" :: Nil
@@ -784,7 +807,7 @@ case class VIP(reservedSkus: List[String])
 > true</code></pre>
     </div>
 
-    <div class="step" data-x="102000">
+    <div class="step" data-x="105000">
         <h2>Objects</h2>
         <pre><code class="scala">class Designer(name: String)
 
@@ -796,11 +819,11 @@ object Designer {
 > Designer("Jimmy Choo")</code></pre>
     </div>
 
-    <section class="step" data-x="103500">
+    <section class="step" data-x="106500">
         Implicits
     </section>
 
-    <div class="step" data-x="105000">
+    <div class="step" data-x="108000">
         <h2>Implicits</h2>
         <ul>
             <li>The <code class="scala">implicit</code> keyword can be used:</li>
@@ -811,7 +834,7 @@ object Designer {
         </ul>
     </div>
 
-    <div class="step" data-x="106500">
+    <div class="step" data-x="109500">
         <h2>Implicit conversions</h2>
         <pre><code class="scala">case class HttpRequest (
   headers: List[HttpHeader]
@@ -822,13 +845,13 @@ case class HttpHeader (
 )</code></pre>
     </div>
 
-    <section class="step" data-x="108000">
+    <section class="step" data-x="111000">
         <img src="images/noheadervalue.jpg" style="height:700px;" />
     </section>
 
-    <div class="step" data-x="109500">
+    <div class="step" data-x="112500">
         <h2>Implicit conversions</h2>
-        <pre><code class="scala">implicit class PimpedHttpRequest(r: HttpRequest) {
+        <pre><code class="scala" style="font-size:30px; line-height:40px;">implicit class PimpedHttpRequest(r: HttpRequest) {
   def headerValue(name: String) = 
     r.headers.find(_.name == name)
 }
@@ -837,7 +860,7 @@ val request = HttpRequest(…)
 request.headerValue("page")</code></pre>
     </div>
 
-    <div class="step" data-x="111000">
+    <div class="step" data-x="114000">
         <h2>Task</h2>
         <pre><code class="scala">case class Duration(mins: Int, secs: Int)
         </code></pre>
@@ -851,7 +874,7 @@ request.headerValue("page")</code></pre>
 Duration(1, 30).totalSecs == 90</code></pre>
     </div>
 
-    <div class="step" data-x="112500" style="font-size:30px; line-height:40px;">
+    <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
         <h2>An Answer</h2>
         <pre><code class="scala">implicit class PimpedDuration(d: Duration) {
   def totalSecs = d.mins * 60 + d.secs
@@ -860,7 +883,7 @@ Duration(1, 30).totalSecs == 90</code></pre>
 Duration(1, 30).totalSecs == 90</code></pre>
     </div>
 
-    <div class="step" data-x="114000" style="font-size:30px; line-height:40px;">
+    <div class="step" data-x="117000" style="font-size:30px; line-height:40px;">
         <h2>Implicit Parameters</h2>
         <pre><code class="scala">implicit val t = db.newTranscation()
 
@@ -874,7 +897,7 @@ addToBasket("12345-67")
 addToBasket("12345-67")(t)</code></pre>
     </div>
 
-    <div class="step" data-x="115500">
+    <div class="step" data-x="118500">
         <h2>Other topics</h2>
         <ul style="font-size:40px; line-height:40px;">
             <li>lazy vals
