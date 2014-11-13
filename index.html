@@ -360,12 +360,12 @@ val ageRequirement = p match {
         <h2>Operators are methods</h2>
         <pre><code class="scala">case class Actor(name: String) {
   def +(other: Actor) =
-    Product(name + other.name)
+    Actor(name + other.name)
 }
 
-Product("Brad").+(Product("Angelina"))
-Product("Brad") +(Product("Angelina"))
-Product("Brad") + Product("Angelina")</code></pre>
+Actor("Brad").+(Actor("Angelina"))
+Actor("Brad") +(Actor("Angelina"))
+Actor("Brad") + Actor("Angelina")</code></pre>
     </div>
 
     <section class="step" data-x="42000">
