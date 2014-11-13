@@ -112,24 +112,25 @@
 
     <div class="step" data-x="9000">
         <h2>Examples</h2>
-        <pre><code class="scala">val pid = 12345
+        <pre><code class="scala">val title = "Jurassic Park"
 
-val designer = "Prada"
+val runtime = 12345
 
-val onSale = true
+val is3d = false
 
-val pidAndSku = (12345, "12345-67")
+val role = ("Sam Neil", "Dr. Alan Grant")
 
-var markdown = 0.5
-markdown = 0.7
+var rating = 0.8
+rating = 0.9
         </code></pre>
     </div>
 
     <div class="step" data-x="10500">
         <h2>Task</h2>
         <ul>
-            <li>Create a val and a var</li>
-            <li>Try to reassign them</li>
+            <li>Assign "Jaws" to a val title</li>
+            <li>Assign 402 to a var gross</li>
+            <li>Assign a new value to title and gross</li>
         </ul>
     </div>
 
@@ -139,17 +140,16 @@ markdown = 0.7
 
     <div class="step" data-x="13500">
         <h2>Examples</h2>
-        <pre><code class="scala">val pid<span class="codehl">: Int</span> = 12345
+        <pre><code class="scala">val title<span class="codehl">: String</span> = "Jurassic Park"
 
-val designer<span class="codehl">: String</span> = "Prada"
+val runtime<span class="codehl">: Int</span> = 12345
 
-val onSale<span class="codehl">: Boolean</span> = true
+val is3d<span class="codehl">: Boolean</span> = false
 
-val pidAndSku<span class="codehl">: (Int, String)</span> = 
-  (12345, "12345-67")
+val role<span class="codehl">: (String, String)</span> = ("Sam Neil", "Dr. Alan Grant")
 
-var markdown<span class="codehl">: Double</span> = 0.5
-        </code></pre>
+var rating<span class="codehl">: Double</span> = 0.8
+rating = 0.9</code></pre>
     </div>
 
     <section class="step" data-x="15000">
@@ -158,50 +158,51 @@ var markdown<span class="codehl">: Double</span> = 0.5
 
     <div class="step" data-x="16500">
         <h2>def (method)</h2>
-        <pre><code class="scala">def markdown(pennies: Int, 
-             percent: Double) = 
-  (pennies * percent).toInt
+        <pre><code class="scala">def success(budget: Int, gross: Int) = 
+  budget &lt; gross
 
-> val r = markdown(80, 0.5)
-r: Int = 40
+val r = success(100, 200)
+r == true
         </code></pre>
     </div>
 
     <div class="step" data-x="18000">
         <h2>def (method)</h2>
-        <pre><code class="scala">def markdown(pennies: Int, 
-             percent: Double)<span class="codehl">: Int</span> = 
-  (pennies * percent).toInt
+        <pre><code class="scala">def success(budget: Int, 
+            gross: Int)<span class="codehl">: Boolean</span> = 
+  budget &lt; gross
 
-> val r = markdown(80, 0.5)
-r: Int = 40
+val r = success(100, 200)
+r == true
         </code></pre>
     </div>
 
     <div class="step" data-x="19500">
+
         <h2>def (method)</h2>
-        <pre><code class="scala">def markdown(pennies: Int, 
-             percent: Double) = <span class="codehl">{</span>
-  (pennies * percent).toInt
+        <pre><code class="scala">def success(budget: Int, 
+            gross: Int) = <span class="codehl">{</span>
+  budget &lt; gross
 <span class="codehl">}</span>
 
-> val r = markdown(80, 0.5)
-r: Int = 40
+val r = success(100, 200)
+r == true
         </code></pre>
     </div>
 
     <div class="step" data-x="21000">
         <h2>Task</h2>
         <ul>
-            <li>Write a method called slug</li>
+            <li>Write a method called simpleRating</li>
             <ul>
-                <li>it takes an Int argument called stock</li>
-                <li>returns <span class="string">"SOLD_OUT"</span> when stock is <span class="number">0</span></li>
-                <li>otherwise returns <span class="string">"IN_STOCK"</span></li>
+                <li>it takes a Double argument called rating</li>
+                <li>returns <span class="string">Excellent</span> when rating is greater than <span class="number">8</span></li>
+                <li>returns <span class="string">Okay</span> when rating is between <span class="number">4</span> and <span class="number">8</span></li>
+                <li>otherwise returns <span class="string">Poor</span></li>
             </ul>
             <li>
                 If statement Syntax:
-                <pre><code class="scala">if ( <em>expr</em> ) <em>a</em> else <em>b</em></code></pre>
+                <pre><code class="scala">if ( <em>expr</em> ) <em>a</em> else if( <em>expr</em> ) <em>b</em> else <em>c</em></code></pre>
             </li>
             <li>
                 Equality check with ==
@@ -211,38 +212,40 @@ r: Int = 40
 
     <div class="step" data-x="22500">
         <h2>def (method)</h2>
-        <pre><code class="scala">def slug(stock: Int) =
-  if(stock == 0) "SOLD_OUT"
-  else "IN_STOCK"
+        <pre><code class="scala">def simpleRating(rating: Double) =
+  if(rating &gt; 8.0) "Excellent"
+  else if(rating &gt; 4.0) "Okay"
+  else "Poor"
 
-> val s = slug(0)
-s: String = SOLD_OUT
+val s = simpleRating(5.0)
+s == Okay
         </code></pre>
     </div>
 
     <div class="step" data-x="24000">
         <h2>Default Parameters</h2>
-        <pre><code class="scala">def markdown(pennies: Int, 
-             percent: Double<span class="codehl"> = 0.5</span>) = 
-  (pennies * percent).toInt
 
-> val r = markdown(80)
-r: Int = 40
+        <pre><code class="scala">def success(budget: Int, 
+            gross: Int<span class="codehl"> = 50</span>) = 
+  budget &lt; gross
 
-> val r = markdown(80, 0.25)
-r: Int = 20
+val r = success(100)
+r == false
+
+val r = success(100, 200)
+r == true
         </code></pre>
     </div>
 
     <div class="step" data-x="25500">
         <h2>By Name Parameters</h2>
-        <pre><code class="scala">def markdown(pennies: Int = 80, 
-             percent: Double = 0.5) = 
-  (pennies * percent).toInt
 
+        <pre><code class="scala">def success(budget: Int = 50, 
+            gross: Int = 50) = 
+  budget &lt; gross
 
-> val r = markdown(<span class="codehl">percent =</span> 0.25)
-r: Int = 20
+val r = success(<span class="codehl">budget =</span> 100)
+r == false
         </code></pre>
     </div>
 
@@ -254,9 +257,10 @@ r: Int = 20
         <h2>Classes</h2>
         <pre><code class="scala">
 
-class Product(stock: Int)
+class Actor(firstName: String,
+            surname: String)
 
-val p = new Product(100)
+val tom = new Actor("Tom", "Hanks")
         </code></pre>
     </div>
 
@@ -264,41 +268,45 @@ val p = new Product(100)
         <h2>Classes</h2>
         <pre><code class="scala">
 
-class Product(val stock: Int)
+class Actor(firstName: String,
+            surname: String)
 
-val p = new Product(100)
-p.stock
+val tom = new Actor("Tom", "Hanks")
+tom.name
         </code></pre>
     </div>
 
     <div class="step" data-x="31500">
         <h2>Classes</h2>
         <pre><code class="scala">
-class Product(val stock: Int) {
-    val lowStock = stock &lt; 3
+class Actor(firstName: String, 
+            surname: String) {
+    val name = firstName + " " + surname
 }
 
-val p = new Product(100)
-p.lowStock
+val tom = new Actor("Tom", "Hanks")
+p.name
         </code></pre>
     </div>
 
     <div class="step" data-x="33000">
         <h2>Classes</h2>
         <pre><code class="scala">
-class Product(val stock: Int) {
-    def lowStock = stock &lt; 3
+class Actor(firstName: String, 
+            surname: String) {
+    def name = firstName + " " + surname
 }
 
-val p = new Product(100)
-p.lowStock
+val tom = new Actor("Tom", "Hanks")
+p.name
         </code></pre>
     </div>
 
     <div class="step" data-x="34500">
         <h2>Case Classes</h2>
-        <pre><code class="scala">case class Product(stock: Int)
-Product(100)</code></pre>
+        <pre><code class="scala">case class Actor(firstName: String,
+                 surname: String)
+</code></pre>
     <ul class="nobullet">
         <li>+ All fields made vals (public)</li>
         <li>+ Factory method (no new keyword)</li>
@@ -311,36 +319,37 @@ Product(100)</code></pre>
 
     <div class="step" data-x="36000">
         <h2>Case Class - Copy</h2>
-        <pre><code class="scala">val p = Product(100)
+        <pre><code class="scala">val tom = new Actor("Tom", "Hanks")
 
-val p2 = p.copy(stock = 99)
+val tom2 = tom.copy(surname = "Cruise")
 
-p2.stock == 99</code></pre>
+tom2.surname == "Cruise"</code></pre>
     </div>
 
     <div class="step" data-x="37500">
         <h2>Case Class - Pattern Match</h2>
-        <pre><code class="scala">val p = Product(100)
+        <pre><code class="scala">val m = Movie(certificate = "U")
 
-val slug = p match {
-  case Product(0) =>           "SOLD_OUT"
-  case Product(1 | 2) =>       "LOW_STOCK"
-  case Product(x) if(x &lt; 0) => "WTF"
-  case _ =>                    "IN_STOCK"
+val ageRequirement = p match {
+  case Movie("U" | "PG") =>   0
+  case Movie("12A") =>        18
+  case Movie(cert) =>         cert.toInt
 }</code></pre>
     </div>
 
     <div class="step" data-x="39000">
         <h2>Task</h2>
         <ul>
-            <li>Write a <span class="keywork">case class</span> called Product</li>
+            <li>Write a <span class="keywork">case class</span> called Movie</li>
             <ul>
-                <li>With a Boolean constructor called <em>visible</em></li>
-                <li>and a Int constructor arg called <em>stock</em></li>
-                <li>and a method called available that returns</li>
+                <li>With an Int constructor arg called <em>year</em></li>
+                <li>and an Int constructor arg called <em>gross</em></li>
+                <li>a Double constructor arg called <em>rating</em></li>
+                <li>and a method called badge that returns</li>
                 <ul>
-                    <li><span class="number">true</span> if the product is visible and in stock</li>
-                    <li><span class="number">false</span> otherwise</li>
+                    <li><span class="string">Golden Oldie</span> if the year &lt; 1960</li>
+                    <li><span class="string">Blockbuster</span> if the gross &gt; 20 and rating &gt; 7</li>
+                    <li><span class="string">Must see</span> otherwise</li>
                 </ul>
             </ul>
         </ul>
@@ -349,14 +358,14 @@ val slug = p match {
 
     <div class="step" data-x="40500">
         <h2>Operators are methods</h2>
-        <pre><code class="scala">case class Product(price: Int) {
-  def +(p: Product) =
-    Product(price + p.price)
+        <pre><code class="scala">case class Actor(name: String) {
+  def +(other: Actor) =
+    Product(name + other.name)
 }
 
-> Product(5).+(Product(8))
-> Product(5) +(Product(8))
-> Product(5) + Product(8)</code></pre>
+Product("Brad").+(Product("Angelina"))
+Product("Brad") +(Product("Angelina"))
+Product("Brad") + Product("Angelina")</code></pre>
     </div>
 
     <section class="step" data-x="42000">
@@ -383,37 +392,35 @@ val funky = (<em>args</em>) => <em>body</em></code></pre>
 
     <div class="step" data-x="46500">
         <h2>Functions</h2>
-        <pre><code class="scala">val markdown =
-  (pennies: Int, percent: Double) =>
-    (pennies * percent).toInt
+        <pre><code class="scala">val success = (budget: Int, gross: Int) => 
+  budget &lt; gross
 
-> val r = markdown(80, 0.5)
+val r = success(100, 200)
 
-> val r = markdown.apply(80, 0.5)</code></pre>
+val r = success.apply(100, 200)</code></pre>
     </div>
 
     <div class="step" data-x="48000">
         <h2>Task</h2>
-        <pre><code class="scala">case class Sku(id: String) {
-  val size = id.split('-')(1).toInt
-}
-> val sku = Sku("1-10")
-> large(Sku("1-10")) == true
-> large(Sku("1-9")) == false</code></pre>
+        <pre><code class="scala">case class Movie(name: String, rating: Float)
+val kb = Movie("Kill Bill", rating = 8.2)
+val tr = Movie("The Room", rating = 3.5)
+> greatFilm(kb) == true
+> greatFilm(tr) == false</code></pre>
 <br />
-        <p>Write the function <code>large</code>. It checks <code>sku.size</code> is >= 10</p>
+        <p>Write the function <code>greatFilm</code>. It checks the <code>rating</code> is >= 7.0</p>
     </div>
 
     <div class="step" data-x="49500">
         <h2>Task</h2>
-        <pre><code class="scala">val large = 
-  (sku: <span class="codehl">Sku</span>) => sku.size > 9
+        <pre><code style="font-size: 30px;" class="scala">val success = 
+  (budget: <span class="codehl">Int</span>, gross: <span class="codehl">Int</span>) => budget &lt; gross
 
-val large: <span class="codehl">Sku => Boolean</span> = 
-  (sku) => sku.size > 9
+val success: <span class="codehl">(Int, Int) => Boolean</span> = 
+  (budget, gross) => budget &lt; gross
 
-val large: <span class="codehl">Sku => Boolean</span> = 
-  _.size > 9</code></pre>
+val success: <span class="codehl">(Int, Int) => Boolean</span> =
+  _ &lt; _</code></pre>
     </div>
 
     <section class="step" data-x="51000">
@@ -434,80 +441,81 @@ val large: <span class="codehl">Sku => Boolean</span> =
 
     <div class="step" data-x="54000">
         <h2>Collections</h2>
-        <pre><code class="scala">val skus = List(
-  Sku("1-9"), 
-  Sku("1-10"), 
-  Sku("2-11")
+        <pre><code class="scala">val movies = List(
+  Movie("Jurassic Park", 10.0f), 
+  Movie("The Room", 3.5f), 
+  Movie("Home Alone", 7.4f)
 )
 
-skus: List[Sku] = List(Sku(1-9), Sku(1-10), Sku("2-11"))</code></pre>
+movies: List[Movie] = List(Movie(...</code></pre>
     </div>
 
     <div class="step" data-x="55500">
         <h2>Collections</h2>
-        <pre><code class="scala">val skus = 
-  Sku("1-9") :: 
-  Sku("1-10") :: 
-  Sku("2-11") :: Nil
+        <pre><code class="scala">val movies = 
+  Movie("Jurassic Park", 10.0f) ::
+  Movie("The Room", 3.5f) ::
+  Movie("Home Alone", 7.4f) :: Nil
 
-skus: List[Sku] = List(Sku(1-9), Sku(1-10), Sku("2-11"))</code></pre>
+movies: List[Movie] = List(Movie(...</code></pre>
     </div>
 
     <div class="step" data-x="57000">
         <h2>Collections</h2>
-        <pre class="fadedcode">val skus = List(
-  Sku("1-9"), Sku("1-10"), Sku("2-11")
-)</pre>
-        <pre><code class="scala">> skus.count(large)
-2
+        <pre><code class="scala">movies.count(greatFilm)</code></pre>
+        <pre class="fadedcode">2
 
-skus.count(_.size > 9)
-2</code></pre>
+        </pre>
+
+        <pre><code class="scala">movies.count(_.name.length > 10)</code></pre>
+        <pre class="fadedcode">1</pre>
     </div>
 
     <div class="step" data-x="58500">
         <h2>Collections</h2>
-        <pre class="fadedcode">val skus = List(
-  Sku("1-9"), Sku("1-10"), Sku("2-11")
-)</pre>
-        <pre><code class="scala">> skus.filter(large)
-List(Sku(1-10), Sku(2-11))
+        <pre><code class="scala">movies.filter(greatFilm)</code></pre>
+        <pre class="fadedcode">List(
+  Movie(Jurassic Park,10.0), 
+  Movie(Home Alone,7.4))
 
-> skus.filter(_.id.startsWith("2"))
-List(2-11)</code></pre>
+</pre>
+
+        <pre><code class="scala">movies.filter(_.name.contains("J"))</code></pre>
+        <pre class="fadedcode">List(Movie(Jurassic Park,10.0))</pre>
     </div>
 
     <div class="step" data-x="60000">
         <h2>Collections</h2>
-        <pre class="fadedcode">val skus = List(
-  Sku("1-9"), Sku("1-10"), Sku("2-11")
-)</pre>
-        <pre><code class="scala">> skus.map(large)
-List(false, true, true)
+        <pre><code class="scala">movies.map(greatFilm)</code></pre>
+        <pre class="fadedcode">List(true, false, true)
 
-> skus.map(_.size)
-List(9, 10, 11)</code></pre>
+        </pre>
+
+        <pre><code class="scala">movies.map(_.name)</code></pre>
+        <pre class="fadedcode">res: List[String] = List(
+  Jurassic Park, 
+  The Room, 
+  Home Alone)</pre>
     </div>
 
     <div class="step" data-x="61500">
         <h2>Collections</h2>
-        <pre class="fadedcode">val skus = List(
-  Sku("1-9"), Sku("1-10"), Sku("2-11")
-)</pre>
-        <pre><code class="scala">> skus.collect {
-  case Sku("999-1") => "SHIPPING"
-  case Sku("2-11") => "PACKAGING"
-}
-res0: List[String] = List(PACKAGING)</code></pre>
+        <pre><code style="font-size: 30px;" class="scala">movies.collect {
+  case Movie(name, rating) if rating &lt; 4 => name
+}</code></pre>
+        <pre class="fadedcode">res: List[String] = List(The Room)</pre>
     </div>
 
     <div class="step" data-x="63000">
         <h2>Collections</h2>
-        <pre><code class="scala">> val skus = List("1-1", "2-2", "3-3")
-> val pids = List(1, 2, 3)
-> pids zip skus
+        <pre><code style="font-size: 30px;" class="scala">val actor = List("Tom", "Val", "Anthony")
+val chars = List("Maverick", "Iceman", "Goose")
+actor zip chars</code></pre>
 
-res0 = List((1,1-1), (2,2-2), (3,3-3))</code></pre>
+        <pre class="fadedcode">res15: List[(String, String)] = List(
+  (Tom,Maverick), 
+  (Val,Iceman), 
+  (Anthony,Goose))</pre>
     </div>
 
     <section class="step" data-x="64500">
@@ -516,79 +524,75 @@ res0 = List((1,1-1), (2,2-2), (3,3-3))</code></pre>
 
     <div class="step" data-x="66000">
         <h2>Task</h2>
-        <pre><code class="scala" style="font-size:30px; line-height:40px;">case class GiftCard(price: Int, currency: String)
+        <pre><code class="scala" style="font-size:30px; line-height:40px;">case class Movie(genre: String, gross: Int)
 
-val giftCards = (100 to 5000 by 50).flatMap(p =>
-  GiftCard(p, "GBP") :: GiftCard(p, "USD") :: 
-  GiftCard(p, "HDK") :: Nil)</code></pre>
+val movies = (100 to 5000 by 50).flatMap(g =>
+  Movie("Drama", g) :: Movie("Romcom", g) :: 
+  Movie("Action", g) :: Nil)
+
+</code></pre>
 
         <ul>
-            <li>Work out the sum of all the <span class="string">"GBP"</span> <code class="scala">giftCards</code></li>
+            <li>Work out the total gross of all the <span class="string">"Action"</span> <code class="scala">movies</code></li>
             <li>Answer should be <span class="number">252450</span></li>
         </li>
 
-        <p style="text-align: center;">You can call <code class="scala">.sum</code> on a <code class="scala">List[Int]</code> to get a total</p>
+        <p style="text-align: center;"><br />You can call <code class="scala">.sum</code> on a <code class="scala">List[Int]</code> to get a total</p>
 
     </div>
 
     <div class="step" data-x="67500">
         <h2>Some answers</h2>
-        <pre><code class="scala">val res = giftCards.
-  filter(_.currency == "GBP").
-  map(_.price).
+        <pre><code class="scala">val res = movies.
+  filter(_.genre == "Action").
+  map(_.gross).
   sum
 
-val res = giftCards.collect { 
-  case GiftCard(x, "GBP") => x  
+val res = movies.collect { 
+  case Movie("Action", gross) => gross
 }.sum</code></pre>
     </div>
 
     <div class="step" data-x="69000">
         <h2>Functions again</h2>
-        <pre><code class="scala">ints.map(
-  i => if(i == 0) "zero!" else i.toString
-)
+        <pre><code class="scala">movies.map <span class="yhl">(movie => 
+  if(movie.score &lt; 4) "Flop" 
+  else "Blockbuster"
+)</span>
 
-ints.collect {
-  case 0 => "zero!"
-}</code></pre>
+movies.collect <span class="yhl">{
+  case movie if movie.score &lt; 4 => "Flop"
+}</span></code></pre>
     </div>
 
     <div class="step" data-x="70500">
         <h2>Functions again</h2>
-        <pre><code class="scala">ints.map(
-  <span class="yhl">i => if(i == 0) "zero!" else i.toString</span>
+        <pre><code class="scala">movies.map (movie => 
+  if(movie.score &lt; 4) "Flop" 
+  else "Blockbuster"
 )
 
-ints.collect {
-  case 0 => "zero!"
+movies.collect {
+  case movie if movie.score &lt; 4 => "Flop"
+  case _ => "Blockbuster"
 }</code></pre>
     </div>
 
     <div class="step" data-x="72000">
         <h2>Functions again</h2>
-        <pre><code class="scala">ints.map(
-  <span class="yhl">i => if(i == 0) "zero!" else i.toString</span>
+        <pre><code class="scala">movies.map (movie => 
+  if(movie.score &lt; 4) "Flop" 
+  else "Blockbuster"
 )
 
-ints.collect <span class="yhl">{
-  case 0 => "zero!"
-}</span></code></pre>
-    </div>
-
-    <div class="step" data-x="73500">
-        <h2>Functions again</h2>
-        <pre><code class="scala">ints.map(
-  i => if(i == 0) "zero!" else i.toString
-)
-
-ints.map {
-  case 0 => "zero!"
-  case i => i.toString
+movies.map {
+  case movie if movie.score &lt; 4 => "Flop"
+  case _ => "Blockbuster"
 }</code></pre>
     </div>
 
-    <div class="step" data-x="75000">
+
+    <div class="step" data-x="73500">
         <h2>Partial Functions</h2>
 
         <ul>
@@ -602,7 +606,7 @@ ints.map {
         <p style="margin-top:20px; text-align:center; font-style: italic;">What happens if we call this with the argument 3?</p>
     </div>
 
-    <div class="step" data-x="76500">
+    <div class="step" data-x="75000">
         <h2>Options</h2>
 
         <ul>
@@ -615,11 +619,11 @@ ints.map {
         </ul>
     </div>
 
-    <section class="step" data-x="78000">
+    <section class="step" data-x="76500">
         <img src="images/nullpointer.jpg" style="width:900px;"/>
     </section>
 
-    <div class="step" data-x="79500">
+    <div class="step" data-x="78000">
         <h2>Options</h2>
         <pre><code class="scala">> val r = Some("intl")
 
@@ -630,7 +634,7 @@ ints.map {
 > val r = Option(null)</code></pre>
     </div>
 
-    <div class="step" data-x="81000">
+    <div class="step" data-x="79500">
         <h2>Options</h2>
         <pre><code class="scala">> val region: Option[String] = …
 
@@ -638,7 +642,7 @@ ints.map {
 "intl"</code></pre>
     </div>
 
-    <div class="step" data-x="82500">
+    <div class="step" data-x="81000">
         <h2>Options</h2>
         <pre><code class="scala">> val query: Option[String] = …
 > val header: Option[String] = …
@@ -647,7 +651,7 @@ ints.map {
 Some("intl")</code></pre>
     </div>
 
-    <div class="step" data-x="84000">
+    <div class="step" data-x="82500">
         <h2>Options</h2>
         <pre><code class="scala">> val designerId: Option[Int] = …
 
@@ -658,7 +662,7 @@ page = Some(Designer(Jimmy Choo))
 page = None</code></pre>
     </div>
 
-    <div class="step" data-x="85500">
+    <div class="step" data-x="84000">
         <h2>Task</h2>
         <ul>
             <li>Make a case class WishlistItem</li>
@@ -674,7 +678,7 @@ WishlistItem("1-1", Some("a")).asString
 "1-1 (a)"</code></pre>
     </div>
 
-    <div class="step" data-x="87000">
+    <div class="step" data-x="85500">
         <h2>Some Solutions</h2>
         <pre><code class="scala" style="font-size:30px; line-height:40px;">def asString = 
   sku + notes.map(" (" + _ + ")").getOrElse("")
@@ -687,7 +691,7 @@ def asString =
   (if(notes.nonEmpty) " (" + notes.get + ")" else "")</code></pre>
     </div>
 
-    <div class="step" data-x="88500">
+    <div class="step" data-x="87000">
         <h2>Callback Hell</h2>
         <pre><code class="scala">
 val spielbergCast = movies.collect {
@@ -700,7 +704,7 @@ val spielbergCast = movies.collect {
 </code></pre>
     </div>
 
-    <div class="step" data-x="90000">
+    <div class="step" data-x="88500">
         <h2>For Expressions</h2>
         <pre><code class="scala">val spielbergCast = for {
   movie <- movies
@@ -710,11 +714,11 @@ val spielbergCast = movies.collect {
 </code></pre>
     </div>
 
-    <section class="step" data-x="91500">
+    <section class="step" data-x="90000">
         Traits
     </section>
 
-    <div class="step" data-x="93000">
+    <div class="step" data-x="91500">
         <h2>Traits</h2>
         <ul>
             <li>Like Classes but</li>
@@ -725,7 +729,7 @@ val spielbergCast = movies.collect {
         </ul>
     </div>
 
-    <div class="step" data-x="94500">
+    <div class="step" data-x="93000">
         <h2>Traits</h2>
         <pre><code class="scala">case class Prod(price: Int)
 
@@ -735,7 +739,7 @@ trait ProdList {
 }</code></pre>
     </div>
 
-    <div class="step" data-x="96000">
+    <div class="step" data-x="94500">
         <h2>Traits</h2>
         <pre><code class="scala">case class Basket(prods: List[Prod])
     extends ProdList
@@ -747,7 +751,7 @@ val b = Basket(
 b.total == 8</code></pre>
     </div>
 
-    <div class="step" data-x="97500">
+    <div class="step" data-x="96000">
         <h2>Traits</h2>
         <pre><code class="scala">case class Wishlist(prods: List[Prod])
 
@@ -757,7 +761,7 @@ val w = new Wishlist(Prod(3) :: Nil)
 w.total == 3</code></pre>
     </div>
 
-    <div class="step" data-x="99000">
+    <div class="step" data-x="97500">
         <h2>Traits</h2>
         <ul>
             <li>Define a trait called <code class="scala">Customer</code> with</li>
@@ -775,7 +779,7 @@ w.total == 3</code></pre>
         </ul>
     </div>
 
-    <div class="step" data-x="100500">
+    <div class="step" data-x="99000">
         <h2>Traits</h2>
         <pre><code class="scala" style="font-size:30px; line-height:40px;">trait Customer {
   def reservedSkus: List[String] 
@@ -790,11 +794,11 @@ case class VIP(reservedSkus: List[String])
 }</code></pre>
     </div>
 
-    <section class="step" data-x="102000">
+    <section class="step" data-x="100500">
         Objects
     </section>
 
-    <div class="step" data-x="103500">
+    <div class="step" data-x="102000">
         <h2>Objects</h2>
         <pre><code class="scala">object Counties {
   val countries = "GB" :: "ZH" :: Nil
@@ -807,7 +811,7 @@ case class VIP(reservedSkus: List[String])
 > true</code></pre>
     </div>
 
-    <div class="step" data-x="105000">
+    <div class="step" data-x="103500">
         <h2>Objects</h2>
         <pre><code class="scala">class Designer(name: String)
 
@@ -819,11 +823,11 @@ object Designer {
 > Designer("Jimmy Choo")</code></pre>
     </div>
 
-    <section class="step" data-x="106500">
+    <section class="step" data-x="105000">
         Implicits
     </section>
 
-    <div class="step" data-x="108000">
+    <div class="step" data-x="106500">
         <h2>Implicits</h2>
         <ul>
             <li>The <code class="scala">implicit</code> keyword can be used:</li>
@@ -834,7 +838,7 @@ object Designer {
         </ul>
     </div>
 
-    <div class="step" data-x="109500">
+    <div class="step" data-x="108000">
         <h2>Implicit conversions</h2>
         <pre><code class="scala">case class HttpRequest (
   headers: List[HttpHeader]
@@ -845,11 +849,11 @@ case class HttpHeader (
 )</code></pre>
     </div>
 
-    <section class="step" data-x="111000">
+    <section class="step" data-x="109500">
         <img src="images/noheadervalue.jpg" style="height:700px;" />
     </section>
 
-    <div class="step" data-x="112500">
+    <div class="step" data-x="111000">
         <h2>Implicit conversions</h2>
         <pre><code class="scala" style="font-size:30px; line-height:40px;">implicit class PimpedHttpRequest(r: HttpRequest) {
   def headerValue(name: String) = 
@@ -860,7 +864,7 @@ val request = HttpRequest(…)
 request.headerValue("page")</code></pre>
     </div>
 
-    <div class="step" data-x="114000">
+    <div class="step" data-x="112500">
         <h2>Task</h2>
         <pre><code class="scala">case class Duration(mins: Int, secs: Int)
         </code></pre>
@@ -874,7 +878,7 @@ request.headerValue("page")</code></pre>
 Duration(1, 30).totalSecs == 90</code></pre>
     </div>
 
-    <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
+    <div class="step" data-x="114000" style="font-size:30px; line-height:40px;">
         <h2>An Answer</h2>
         <pre><code class="scala">implicit class PimpedDuration(d: Duration) {
   def totalSecs = d.mins * 60 + d.secs
@@ -883,7 +887,7 @@ Duration(1, 30).totalSecs == 90</code></pre>
 Duration(1, 30).totalSecs == 90</code></pre>
     </div>
 
-    <div class="step" data-x="117000" style="font-size:30px; line-height:40px;">
+    <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
         <h2>Implicit Parameters</h2>
         <pre><code class="scala">implicit val t = db.newTranscation()
 
@@ -897,7 +901,7 @@ addToBasket("12345-67")
 addToBasket("12345-67")(t)</code></pre>
     </div>
 
-    <div class="step" data-x="118500">
+    <div class="step" data-x="117000">
         <h2>Other topics</h2>
         <ul style="font-size:40px; line-height:40px;">
             <li>lazy vals
