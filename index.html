@@ -625,70 +625,77 @@ movies.map {
 
     <div class="step" data-x="78000">
         <h2>Options</h2>
-        <pre><code class="scala">> val r = Some("intl")
+        <pre><code class="scala">val sort = Some("newest")
 
-> val r = None
+val sort = None
 
-> val r = Option("intl")
+val sort = Option("newest")
 
-> val r = Option(null)</code></pre>
+val sort = Option(null)</code></pre>
     </div>
 
     <div class="step" data-x="79500">
         <h2>Options</h2>
-        <pre><code class="scala">> val region: Option[String] = …
+        <pre><code class="scala"> val sort: Option[String] = …
 
-> region.getOrElse("intl")
-"intl"</code></pre>
+sort.getOrElse("newest")</code></pre>
     </div>
 
     <div class="step" data-x="81000">
         <h2>Options</h2>
-        <pre><code class="scala">> val query: Option[String] = …
-> val header: Option[String] = …
+        <pre><code class="scala">val querySort: Option[String] = …
+val headerSort: Option[String] = …
 
-> val token = query.orElse(header)
-Some("intl")</code></pre>
+> val token = querySort.orElse(headerSort)
+Some("newest")</code></pre>
     </div>
 
     <div class="step" data-x="82500">
         <h2>Options</h2>
-        <pre><code class="scala">> val designerId: Option[Int] = …
+        <pre><code class="scala">val sort: Option[String] = …
 
-> val designer = designerId
-  .map(getDesignerFromDb)
+val movies = sort
+  .map(sort => getMoviesFromDb(sort))
 
-page = Some(Designer(Jimmy Choo))
+page = Some(List(Movie(...), Movie(...)))
 page = None</code></pre>
     </div>
 
     <div class="step" data-x="84000">
         <h2>Task</h2>
         <ul>
-            <li>Make a case class WishlistItem</li>
+            <li>Make a case class Rating</li>
             <ul>
-                <li>It has a sku of type String</li>
-                <li>and an optionally a note of type String</li>
+                <li>It has a stars field of type Int</li>
+                <li>and a comment field of type Option[String]</li>
             </ul>
-            <li>Give WishlistItem a method asString that returns like so:</li>
+            <li>Give Rating a method asString that returns like so:</li>
         </ul>
-        <pre><code class="scala">WishlistItem("1-1", None).asString
-"1-1"
-WishlistItem("1-1", Some("a")).asString
-"1-1 (a)"</code></pre>
+        <pre><code class="scala">Rating(3, None).asString
+"5* [no comment]"
+
+Rating(1, Some("So awful")).asString
+"1* [comment: So awful]"</code></pre>
     </div>
 
     <div class="step" data-x="85500">
         <h2>Some Solutions</h2>
         <pre><code class="scala" style="font-size:30px; line-height:40px;">def asString = 
-  sku + notes.map(" (" + _ + ")").getOrElse("")
+  stars + "* " + 
+  comment.map("[comment:" + _ + "]").
+  getOrElse("[no comment]")
 
 def asString = 
-  notes.map(sku + " (" + _ + ")").getOrElse(sku)
+  stars + "* " + (
+  if(comment.nonEmpty) "[comment:" + comment.get + "]" 
+  else "[no comment]")
 
-def asString = 
-  sku + 
-  (if(notes.nonEmpty) " (" + notes.get + ")" else "")</code></pre>
+def asString = stars + "* " + (comment match { 
+  case Some(c) => s"[comment:$c]" 
+  case None => "[no comment]" 
+})
+
+</code></pre>
     </div>
 
     <div class="step" data-x="87000">
