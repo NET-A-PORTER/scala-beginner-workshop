@@ -37,11 +37,6 @@ body {
     background-color:rgba(245,208,76, 0.75)
 }
 
-.fadedcode {
-    color: #999;
-    font-family: monospace;
-}
-
 .nobullet {
    list-style: none;
    margin-left: 0;

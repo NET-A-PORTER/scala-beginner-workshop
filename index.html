@@ -714,9 +714,9 @@ val spielbergCast = movies.collect {
     <div class="step" data-x="88500">
         <h2>For Expressions</h2>
         <pre><code class="scala">val spielbergCast = for {
-  movie <- movies
+  movie &lt;- movies
   if movie.director.name == "Spielberg"
-  actor <- movie.cast
+  actor &lt;- movie.cast
 } yield actor.name
 </code></pre>
     </div>
@@ -738,67 +738,64 @@ val spielbergCast = movies.collect {
 
     <div class="step" data-x="93000">
         <h2>Traits</h2>
-        <pre><code class="scala">case class Prod(price: Int)
+        <pre><code class="scala">trait Outcome
+case object Nominated extends Outcome
+case object Won extends Outcome
 
-trait ProdList {
-  def prods: List[Prod]
-  def total = prods.map(_.price).sum
+case class Award(name: String, outcome: Outcome)
+
+trait Person {
+  def awards: List[Award]
+  def awardsWon = prods.filter(_.outcome == Won)
 }</code></pre>
     </div>
 
     <div class="step" data-x="94500">
         <h2>Traits</h2>
-        <pre><code class="scala">case class Basket(prods: List[Prod])
-    extends ProdList
+        <pre><code class="scala">case class Actor(awards: List[Award])
+    extends Person
 
-val b = Basket(
-  Prod(3) :: Prod(5) :: Nil
+val seanBean = Actor(
+  Award("Best Leading Actor", Won) :: Nil
 )
 
-b.total == 8</code></pre>
+seanBean.awardsWon.size == 1</code></pre>
     </div>
 
     <div class="step" data-x="96000">
         <h2>Traits</h2>
-        <pre><code class="scala">case class Wishlist(prods: List[Prod])
+        <pre><code class="scala">case class Director(awards: List[Award])
 
-val w = new Wishlist(Prod(3) :: Nil)
-  with ProdList
+val spielberg = new Director(Award("Best Picture", Nominated) :: Nil)
+  with Person
 
-w.total == 3</code></pre>
+spielberg.awardsWon.size == 0</code></pre>
     </div>
 
     <div class="step" data-x="97500">
         <h2>Traits</h2>
         <ul>
-            <li>Define a trait called <code class="scala">Customer</code> with</li>
-            <ul>
-                <li>abstract def reservedSkus of type List[String]</li>
-                <li>abstract def maxReservations of type Int</li>
-                <li>def canReserve of type Boolean</li>
-                <ul><li><code class="scala">reservedSkus &lt; maxReservations?</code></li></ul>
-            </ul>
-            <li>Define a class called VIP; inherits from Customer</li>
-            <ul>
-                <li>implement maxReservations with a val set to 3</li>
-            </ul>
-            <li>Try calling canReserve on some instances</li>
+            <li>Define a trait called <code class="scala">Production</code> with and abstract def releaseYear of type Int</li>
+            <li>Define a Film class; extends Production implement releaseYear with a year val</li>
+            <li>Bonus: Change TvShow to extends Production</li>
+            <ul><li>implement releaseYear with a method selecting the earliest series year</li></ul>
+            <pre><code class="scala" style="font-size:30px; line-height:40px;">
+case class Series(year: Int)
+case class TvShow(series: List[Series])
+</code></pre>
         </ul>
     </div>
 
     <div class="step" data-x="99000">
         <h2>Traits</h2>
-        <pre><code class="scala" style="font-size:30px; line-height:40px;">trait Customer {
-  def reservedSkus: List[String] 
-  def maxReservations: Int
-  def canReserve = 
-    reservedSkus.size &lt; maxReservations
-}
+        <pre><code class="scala" style="font-size:30px; line-height:40px;">trait Production { def releaseYear: Int }
+case class Film(releaseYear: Int) extends Production
 
-case class VIP(reservedSkus: List[String]) 
-    extends Customer {
-  val maxReservations = 3
-}</code></pre>
+case class TvShow(series: List[Series]) { def releaseYear = series.sortBy(_.year).head.year }
+val thirtyRock = new TvShow(Series(2011) :: Series(2012) :: Nil) with Production
+thirtyRock.releaseYear
+res2: Int = 2011
+        </code></pre>
     </div>
 
     <section class="step" data-x="100500">
@@ -820,14 +817,14 @@ case class VIP(reservedSkus: List[String])
 
     <div class="step" data-x="103500">
         <h2>Objects</h2>
-        <pre><code class="scala">class Designer(name: String)
+        <pre><code class="scala">case class Movie(name: String)
 
-object Designer {
+object Movie {
   def apply(name: String) =
-    new Designer(name)
+    new Movie(name)
 }
 
-> Designer("Jimmy Choo")</code></pre>
+> Movie("Jurassic Park")</code></pre>
     </div>
 
     <section class="step" data-x="105000">
@@ -856,10 +853,6 @@ case class HttpHeader (
 )</code></pre>
     </div>
 
-    <section class="step" data-x="109500">
-        <img src="images/noheadervalue.jpg" style="height:700px;" />
-    </section>
-
     <div class="step" data-x="111000">
         <h2>Implicit conversions</h2>
         <pre><code class="scala" style="font-size:30px; line-height:40px;">implicit class PimpedHttpRequest(r: HttpRequest) {
@@ -869,6 +862,7 @@ case class HttpHeader (
 
 val request = HttpRequest(…)
 request.headerValue("page")</code></pre>
+// Compiler generates this code new PimpedHttpRequest(request).headerValue("page")
     </div>
 
     <div class="step" data-x="112500">
@@ -896,16 +890,53 @@ Duration(1, 30).totalSecs == 90</code></pre>
 
     <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
         <h2>Implicit Parameters</h2>
-        <pre><code class="scala">implicit val t = db.newTranscation()
+        <pre><code class="scala">Seq(22, 2, 11, 1).sorted
+// Seq(1, 2, 11, 22)
 
-def addToBasket(sku: Sku)
-               (implicit t: Transaction) {
-  … 
-  t.commit
+Seq("22", "2", "11", "1").sorted
+// Seq(1, 11, 2, 22)
+    </div>
+
+    <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
+        <h2>Implicit Parameters</h2>
+        <pre><code class="scala">trait Seq[A] {
+  def sorted[A](implicit ord: Ordering[A]): Seq[A]
 }
 
-addToBasket("12345-67")
-addToBasket("12345-67")(t)</code></pre>
+case class Movie(year: Int)
+
+implicit val movieOrdering = new Ordering[Movie] {
+  def compare(x: Movie, y: Movie) = x.year.compareTo(y.year)
+}
+
+val movies = Seq(Movie(2011), Movie(1960), Movie(1994))
+movies.sorted
+
+// List(Movie(1960), Movie(1994), Movie(2011))
+</code></pre>
+    </div>
+
+    <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
+        <h2>Implicit Parameters</h2>
+        <pre><code class="scala">trait Seq[A] {
+def sorted[A](asc: Boolean)(implicit ord: Ordering[A]): Seq[A]
+
+val movies = Seq(Movie(2011), Movie(1960), Movie(1994))
+movies.sorted(false)
+}
+</code></pre>
+    </div>
+
+    <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
+        <h2>Implicit Parameters</h2>
+        <pre><code class="scala">implicit val movieOrdering = new Ordering[Movie] {
+  def compare(x: Movie, y: Movie) = x.year.compareTo(y.year)
+}
+
+implicit object MovieOrdering extends Ordering[Movie] {
+  def compare(x: Movie, y: Movie) = x.year.compareTo(y.year)
+}
+</code></pre>
     </div>
 
     <div class="step" data-x="117000">
