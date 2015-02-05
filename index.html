@@ -738,15 +738,14 @@ val spielbergCast = movies.collect {
 
     <div class="step" data-x="93000">
         <h2>Traits</h2>
-        <pre><code class="scala">trait Outcome
-case object Nominated extends Outcome
-case object Won extends Outcome
-
-case class Award(name: String, outcome: Outcome)
+        <pre><code class="scala">case class Award(name: String, 
+                 outcome: String)
+// outcome is "Won" or "Nominated"
 
 trait Person {
   def awards: List[Award]
-  def awardsWon = prods.filter(_.outcome == Won)
+  def awardsWon = 
+    prods.filter(_.outcome == "Won")
 }</code></pre>
     </div>
 
@@ -756,7 +755,7 @@ trait Person {
     extends Person
 
 val seanBean = Actor(
-  Award("Best Leading Actor", Won) :: Nil
+  Award("Best Lead Actor", "Won") :: Nil
 )
 
 seanBean.awardsWon.size == 1</code></pre>
@@ -764,10 +763,11 @@ seanBean.awardsWon.size == 1</code></pre>
 
     <div class="step" data-x="96000">
         <h2>Traits</h2>
-        <pre><code class="scala">case class Director(awards: List[Award])
+        <pre><code class="scala" style="font-size:35px; line-height:45px;">case class Director(awards: List[Award])
 
-val spielberg = new Director(Award("Best Picture", Nominated) :: Nil)
-  with Person
+val spielberg = new Director(
+  Award("Best Film", "Won") :: Nil
+) with Person
 
 spielberg.awardsWon.size == 0</code></pre>
     </div>
@@ -775,9 +775,9 @@ spielberg.awardsWon.size == 0</code></pre>
     <div class="step" data-x="97500">
         <h2>Traits</h2>
         <ul>
-            <li>Define a trait called <code class="scala">Production</code> with and abstract def releaseYear of type Int</li>
-            <li>Define a Film class; extends Production implement releaseYear with a year val</li>
-            <li>Bonus: Change TvShow to extends Production</li>
+            <li>Define a trait called <code class="scala">Production</code> with and abstract def <code class="scala">releaseYear</code> of type <code class="scala">Int</code></li>
+            <li>Define a <code class="scala">Film</code> class; extends Production implement releaseYear with a year val</li>
+            <li>Bonus: Change <code class="scala">TvShow</code> to extends Production</li>
             <ul><li>implement releaseYear with a method selecting the earliest series year</li></ul>
             <pre><code class="scala" style="font-size:30px; line-height:40px;">
 case class Series(year: Int)
@@ -788,11 +788,16 @@ case class TvShow(series: List[Series])
 
     <div class="step" data-x="99000">
         <h2>Traits</h2>
-        <pre><code class="scala" style="font-size:30px; line-height:40px;">trait Production { def releaseYear: Int }
+        <pre><code class="scala" style="font-size:28px; line-height:38px;">trait Production { def releaseYear: Int }
 case class Film(releaseYear: Int) extends Production
 
-case class TvShow(series: List[Series]) { def releaseYear = series.sortBy(_.year).head.year }
-val thirtyRock = new TvShow(Series(2011) :: Series(2012) :: Nil) with Production
+case class TvShow(series: List[Series]) { 
+  def releaseYear = series.sortBy(_.year).head.year 
+}
+val thirtyRock = new TvShow(
+  Series(2011) :: Series(2012) :: Nil
+) with Production
+
 thirtyRock.releaseYear
 res2: Int = 2011
         </code></pre>
@@ -827,11 +832,30 @@ object Movie {
 > Movie("Jurassic Park")</code></pre>
     </div>
 
-    <section class="step" data-x="105000">
+    <div class="step" data-x="105000">
+        <h2>Objects as enums</h2>
+        <pre><code class="scala">sealed trait Outcome
+case object Nominated extends Outcome
+case object Won extends Outcome</code></pre>
+    </div>
+
+    <div class="step" data-x="106500">
+        <h2>Objects as enums</h2>
+        <pre><code class="scala">
+case class Award(outcome: Outcome)
+val award = Award(Won)
+
+val msg = award match {
+    case Award(Won) => "Woohoo!"
+    case Award(_)   => "Unlucky"
+}</code></pre>
+    </div>
+
+    <section class="step" data-x="108000">
         Implicits
     </section>
 
-    <div class="step" data-x="106500">
+    <div class="step" data-x="109500">
         <h2>Implicits</h2>
         <ul>
             <li>The <code class="scala">implicit</code> keyword can be used:</li>
@@ -842,7 +866,7 @@ object Movie {
         </ul>
     </div>
 
-    <div class="step" data-x="108000">
+    <div class="step" data-x="111000">
         <h2>Implicit conversions</h2>
         <pre><code class="scala">case class HttpRequest (
   headers: List[HttpHeader]
@@ -853,7 +877,7 @@ case class HttpHeader (
 )</code></pre>
     </div>
 
-    <div class="step" data-x="111000">
+    <div class="step" data-x="112500">
         <h2>Implicit conversions</h2>
         <pre><code class="scala" style="font-size:30px; line-height:40px;">implicit class PimpedHttpRequest(r: HttpRequest) {
   def headerValue(name: String) = 
@@ -861,11 +885,13 @@ case class HttpHeader (
 }
 
 val request = HttpRequest(…)
-request.headerValue("page")</code></pre>
-// Compiler generates this code new PimpedHttpRequest(request).headerValue("page")
+request.headerValue("page")
+
+// Compiler generates
+// PimpedHttpRequest(request).headerValue("page")</code></pre>
     </div>
 
-    <div class="step" data-x="112500">
+    <div class="step" data-x="114000">
         <h2>Task</h2>
         <pre><code class="scala">case class Duration(mins: Int, secs: Int)
         </code></pre>
@@ -879,7 +905,7 @@ request.headerValue("page")</code></pre>
 Duration(1, 30).totalSecs == 90</code></pre>
     </div>
 
-    <div class="step" data-x="114000" style="font-size:30px; line-height:40px;">
+    <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
         <h2>An Answer</h2>
         <pre><code class="scala">implicit class PimpedDuration(d: Duration) {
   def totalSecs = d.mins * 60 + d.secs
@@ -888,58 +914,64 @@ Duration(1, 30).totalSecs == 90</code></pre>
 Duration(1, 30).totalSecs == 90</code></pre>
     </div>
 
-    <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
+    <div class="step" data-x="117000" style="font-size:30px; line-height:40px;">
         <h2>Implicit Parameters</h2>
         <pre><code class="scala">Seq(22, 2, 11, 1).sorted
 // Seq(1, 2, 11, 22)
 
 Seq("22", "2", "11", "1").sorted
-// Seq(1, 11, 2, 22)
+// Seq(1, 11, 2, 22)</code></pre>
     </div>
 
-    <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
+    <div class="step" data-x="118500" style="font-size:30px; line-height:40px;">
         <h2>Implicit Parameters</h2>
         <pre><code class="scala">trait Seq[A] {
   def sorted[A](implicit ord: Ordering[A]): Seq[A]
+}</code></pre>
+    </div>
+
+<div class="step" data-x="120000" style="font-size:30px; line-height:40px;">
+        <h2>Implicit Parameters</h2>
+        <pre><code class="scala">case class Film(year: Int)
+
+implicit val filmOrd = new Ordering[Film] {
+  def compare(x: Film, y: Film) = 
+    x.year.compareTo(y.year)
 }
 
-case class Movie(year: Int)
-
-implicit val movieOrdering = new Ordering[Movie] {
-  def compare(x: Movie, y: Movie) = x.year.compareTo(y.year)
-}
-
-val movies = Seq(Movie(2011), Movie(1960), Movie(1994))
-movies.sorted
-
-// List(Movie(1960), Movie(1994), Movie(2011))
+val films = Seq(Film(2011), Film(1960), Film(1994))
+films.sorted
+// List(Film(1960), Film(1994), Film(2011))
 </code></pre>
     </div>
 
-    <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
+    <div class="step" data-x="121500" style="font-size:30px; line-height:40px;">
         <h2>Implicit Parameters</h2>
         <pre><code class="scala">trait Seq[A] {
-def sorted[A](asc: Boolean)(implicit ord: Ordering[A]): Seq[A]
-
-val movies = Seq(Movie(2011), Movie(1960), Movie(1994))
-movies.sorted(false)
+ def sorted[A](asc: Boolean)
+              (implicit ord: Ordering[A]): Seq[A]
 }
+val films = Seq(Film(2011), Film(1960), Film(1994))
+films.sorted(false)
+
 </code></pre>
     </div>
 
-    <div class="step" data-x="115500" style="font-size:30px; line-height:40px;">
+    <div class="step" data-x="123000" style="font-size:30px; line-height:40px;">
         <h2>Implicit Parameters</h2>
-        <pre><code class="scala">implicit val movieOrdering = new Ordering[Movie] {
-  def compare(x: Movie, y: Movie) = x.year.compareTo(y.year)
+        <pre><code class="scala">implicit val movieOrd = new Ordering[Film] {
+  def compare(x: Film, y: Film) = 
+    x.year.compareTo(y.year)
 }
 
-implicit object MovieOrdering extends Ordering[Movie] {
-  def compare(x: Movie, y: Movie) = x.year.compareTo(y.year)
+implicit object FilmOrd extends Ordering[Film] {
+  def compare(x: Film, y: Film) = 
+    x.year.compareTo(y.year)
 }
 </code></pre>
     </div>
 
-    <div class="step" data-x="117000">
+    <div class="step" data-x="124500">
         <h2>Other topics</h2>
         <ul style="font-size:40px; line-height:40px;">
             <li>lazy vals
